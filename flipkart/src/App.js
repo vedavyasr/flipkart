@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Header from "./app/components/Header";
 import Footer from "./app/components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./app/components/Home";
-import Categories from "./app/components/Categories";
+import Categories from "./app/containers/CategoriesContainer";
 import Cart from "./app/components/Cart";
 import Products from "./app/components/Products";
 import Checkout from "./app/components/Checkout";
+import Home from "./app/containers/ProductsContainer";
 class App extends Component {
   render() {
     return (

@@ -9,12 +9,13 @@ class Header extends Component {
         <Nav tabs>
           <Nav className="menuBtn">
             <NavLink url="/" title="Home" />
-            <NavLink url="/cart" title="Cart" />
             <NavLink url="/categories" title="Categories" />
+            <NavLink url="/products" title="Products" />
+            <NavLink url="/cart" title="Cart" />
             <NavLink url="/checkout" title="Checkout" />
           </Nav>
 
-          {loggedIn ? (
+          {!loggedIn ? (
             <Nav className="registerBtn">
               <NavLink url="/login" title="Login" />
               <NavLink url="/register" title="Register" />
