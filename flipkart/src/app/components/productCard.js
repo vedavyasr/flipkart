@@ -12,7 +12,7 @@ import {
 
 export default props => (
   <CardColumns>
-    <Card style={{ width: "300px" }}>
+    <Card>
       <CardImg src={props.img} alt={props.name} />
       <CardBody>
         <CardTitle>{props.name}</CardTitle>
