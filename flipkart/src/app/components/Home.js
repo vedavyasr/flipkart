@@ -11,8 +11,9 @@ class Home extends Component {
       <div>
         <Carousel />
         <hr />
-        <h3>Top Selling Products</h3>
+        <h3 className="text-center">Top Selling Products</h3>
         <hr />
+        <div className="container-fluid">
         {this.props.products.map(
           product =>
             ++i &&
@@ -27,6 +28,7 @@ class Home extends Component {
               />
             )
         )}
+        </div>
       </div>
     );
   }
