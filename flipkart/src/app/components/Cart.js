@@ -36,7 +36,7 @@ class Cart extends PureComponent {
 
 let mapStateToProps = state => {
   return {
-    cart: state.products.cart
+    cart: state.cart.cart
   };
 };
 
