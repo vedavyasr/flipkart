@@ -95,10 +95,19 @@ export const deleteProduct = id => ({
   payload: id
 });
 
-export const addToCart = product => dispatch => {
+export const addToCart = productid => (dispatch, getState) => {
+  let products = getState().products.products;
+  let cartItem = products.filter(({ id }) => id === productid);
   dispatch({
     type: actions.ADD_TO_CART,
-    payload: product
+    payload: cartItem[0]
   });
 };
 
+// export function addProductToCard(productid) {
+//   return function adding(dispatch, getState) {
+//     // console.log(cartItem," in output");
+
+//     dispatch(addToCart(cartItem[0]));
+//   };
+// }

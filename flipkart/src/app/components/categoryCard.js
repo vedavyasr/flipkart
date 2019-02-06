@@ -3,7 +3,6 @@ import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { withRouter } from "react-router-dom";
 
 let Categorycard = props => {
-  console.log(props, " card categoty");
   return (
     <Card>
       <CardImg src={props.img} alt={props.name} />
