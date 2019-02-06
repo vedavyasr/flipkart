@@ -30,3 +30,12 @@
     transform: rotate(360deg);
   }
 }
+
+.menuBtn {
+  float: left;
+  width:80%;
+}
+.registerBtn {
+  float: right;
+  width:20%;
+}
