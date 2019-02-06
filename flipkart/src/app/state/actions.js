@@ -63,7 +63,7 @@ export function fetchCategories() {
         dispatch(fetchingCategoriesSuccess(response.data));
       })
       .catch(err => {
-        console.log(err);
+        console.log(err, "error");
         dispatch(fetchingCategoriesError(err));
       });
   };
@@ -83,9 +83,11 @@ export const filterProducts = products => ({
 
 export function filterByCategory() {
   return function filteringProducts(dispatch, getState) {
-    let id = getState().products.selectedCategoryId;
+    let id = getState().categories.selectedCategoryId;
     let products = getState().products.products;
+
     let results = products.filter(({ categoryId }) => categoryId === id);
+
     dispatch(filterProducts(results));
   };
 }
@@ -104,10 +106,9 @@ export const addToCart = productid => (dispatch, getState) => {
   });
 };
 
-// export function addProductToCard(productid) {
-//   return function adding(dispatch, getState) {
-//     // console.log(cartItem," in output");
-
-//     dispatch(addToCart(cartItem[0]));
-//   };
-// }
+export const searchValue = value => dispatch => {
+  dispatch({
+    type: actions.SEARCH_VALUE,
+    payload: value
+  });
+};

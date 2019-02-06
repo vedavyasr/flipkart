@@ -2,12 +2,12 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import * as actions from "../state/actions";
 import { bindActionCreators } from "redux";
-import Product from "./productCard";
-
+import Product from "./ProductCard";
+import { Spinner } from "reactstrap";
 class Products extends PureComponent {
   componentWillMount() {
     !(
-      this.props.products.productsByCategory.length ||
+      this.props.categories.productsByCategory.length ||
       this.props.products.products.length
     ) && this.props.dispatchers.fetchProducts();
   }
@@ -17,9 +17,17 @@ class Products extends PureComponent {
         <h2>Products</h2>
         <hr />
         <h3>Filter:</h3>
+        <input
+          type="search"
+          onChange={e => this.props.dispatchers.searchValue(e.target.value)}
+        />
         <hr />
-        {this.props.products.productsByCategory.length
-          ? this.props.products.productsByCategory.map(product => (
+        {!this.props.products.isFetching ? (
+          this.props.products.searchValue ? (
+            <h2>searching</h2>
+          ) : // this.props.products.productsByCategory
+          this.props.categories.productsByCategory.length ? (
+            this.props.categories.productsByCategory.map(product => (
               <Product
                 img={product.imageUrl}
                 name={product.name}
@@ -29,11 +37,12 @@ class Products extends PureComponent {
                 key={product.id}
                 id={product.id}
                 addToCard={this.props.dispatchers.addToCart}
-                cart={this.props.products.cart}
+                cart={this.props.cart.cart}
                 products={this.props.products.products}
               />
             ))
-          : this.props.products.products.map(product => (
+          ) : (
+            this.props.products.products.map(product => (
               <Product
                 img={product.imageUrl}
                 name={product.name}
@@ -43,10 +52,14 @@ class Products extends PureComponent {
                 key={product.id}
                 id={product.id}
                 addToCard={this.props.dispatchers.addToCart}
-                cart={this.props.products.cart}
+                cart={this.props.cart.cart}
                 products={this.props.products.products}
               />
-            ))}
+            ))
+          )
+        ) : (
+          <Spinner style={{ width: "3rem", height: "3rem" }} />
+        )}
       </div>
     );
   }
@@ -54,7 +67,9 @@ class Products extends PureComponent {
 
 let mapStateToProps = state => {
   return {
-    products: state.products
+    products: state.products,
+    cart: state.cart,
+    categories: state.categories
   };
 };
 

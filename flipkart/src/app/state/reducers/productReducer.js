@@ -6,11 +6,9 @@ const INITIAL_STATE = {
   isFetching: false,
   userName: "",
   products: [],
-  categories: [],
   error: {},
-  selectedCategoryId: 0,
-  productsByCategory: [],
-  cart: []
+  searchValue: "",
+  results: []
 };
 
 export default function productReducer(state = INITIAL_STATE, action) {
@@ -21,26 +19,12 @@ export default function productReducer(state = INITIAL_STATE, action) {
       return { ...state, products: action.payload, isFetching: false };
     case actions.FETCHING_PRODUCTS_ERROR:
       return { ...state, error: action.payload, isFetching: false };
-    case actions.FETCHING_CATEGORIES_INIT:
-      return { ...state, isFetching: true };
-    case actions.FETCHING_CATEGORIES_SUCCESS:
-      return { ...state, isFetching: false, categories: action.payload };
-    case actions.FETCHING_CATEGORIES_ERROR:
-      return { ...state, error: action.payload, isFetching: false };
-    case actions.SAVE_CATEGORY_ID:
-      return { ...state, selectedCategoryId: action.payload };
-    case actions.FILTER_BY_CATEGORY:
-      return { ...state, productsByCategory: action.payload };
-    case actions.DELETE_CART_ITEM:
+    case actions.SEARCH_VALUE:
       return {
         ...state,
-        cart: state.cart.filter(({ id }) => id !== action.payload)
+        searchValue: action.payload
       };
-    case actions.ADD_TO_CART:
-      return {
-        ...state,
-        cart: [...state.cart, action.payload]
-      };
+
     default:
       return state;
   }

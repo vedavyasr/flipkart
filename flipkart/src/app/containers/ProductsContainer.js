@@ -4,12 +4,15 @@ import { bindActionCreators } from "redux";
 import Home from "../components/Home";
 
 let mapStateToProps = state => {
+  let topSellingProducts = [];
+  state.products.products.map(top => topSellingProducts.push(top));
   return {
+    topSellingProducts: topSellingProducts,
     products: state.products.products,
-    productsByCategory: state.products.productsByCategory,
+    productsByCategory: state.categories.productsByCategory,
     isFetching: state.products.isFetching,
     error: state.products.error,
-    cart: state.products.cart
+    cart: state.cart.cart
   };
 };
 

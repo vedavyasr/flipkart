@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 let Categorycard = props => {
   return (
-    <Card>
+    <Card style={{ width: "300px" }}>
       <CardImg src={props.img} alt={props.name} />
       <CardBody>
         <CardTitle>{props.name}</CardTitle>
@@ -12,7 +12,6 @@ let Categorycard = props => {
           onClick={() => {
             props.click(props.id);
             props.filter();
-
             props.history.push("/products");
           }}
         >
