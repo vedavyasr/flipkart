@@ -1,13 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Category from "./categoryCard";
-
-export default class Categories extends Component {
-  //   static getDerivedStateFromProps(props, state) {
-  //     console.log(props, "getDerivedStateFromProps ..");
-  // props.isFetching?
-  //     props.dispatchers.fetchCategories() : '';
-  //     return null;
-  //   }
+import { Spinner } from "reactstrap";
+export default class Categories extends PureComponent {
   componentWillMount() {
     this.props.dispatchers.fetchCategories();
   }
@@ -26,7 +20,7 @@ export default class Categories extends Component {
             />
           ))
         ) : (
-          <h2>loading...</h2>
+          <Spinner style={{ width: "3rem", height: "3rem" }} />
         )}
       </div>
     );

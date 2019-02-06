@@ -19,7 +19,14 @@ export default props => (
         <StarRatingComponent name="rate1" starCount={5} value={props.rating} />
         <CardText>{props.shortdesc}</CardText>
         <Button>Buy Now</Button>
-        {/* <Button onClick={()=>{}}>+ Cart</Button> */}
+
+        <Button
+          onClick={() => {
+            props.addToCard(props.id);
+          }}
+        >
+          + Cart
+        </Button>
       </CardBody>
     </Card>
   </CardColumns>

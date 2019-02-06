@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Product from "./productCard";
 import Carousel from "./carousel";
-class Home extends Component {
+import {Spinner} from "reactstrap";
+class Home extends PureComponent {
   componentWillMount() {
     this.props.dispatchers.fetchProducts();
   }
@@ -14,20 +15,28 @@ class Home extends Component {
         <h3 className="text-center">Top Selling Products</h3>
         <hr />
         <div className="container-fluid">
-        {this.props.products.map(
-          product =>
-            ++i &&
-            i < 5 && (
-              <Product
-                img={product.imageUrl}
-                name={product.name}
-                shortdesc={product.shortDescription}
-                rating={product.ratings.avgRating}
-                totalReviews={product.ratings.totalReviews}
-                key={product.id}
-              />
+          {!this.props.products.isFetching ? (
+            this.props.products.map(
+              product =>
+                ++i &&
+                i < 5 && (
+                  <Product
+                    img={product.imageUrl}
+                    name={product.name}
+                    shortdesc={product.shortDescription}
+                    rating={product.ratings.avgRating}
+                    totalReviews={product.ratings.totalReviews}
+                    key={product.id}
+                    id={product.id}
+                    addToCard={this.props.dispatchers.addToCart}
+                    cart={this.props.cart}
+                    products={this.props.products}
+                  />
+                )
             )
-        )}
+          ) : (
+            <Spinner style={{ width: "3rem", height: "3rem" }} />
+          )}
         </div>
       </div>
     );

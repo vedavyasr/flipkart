@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Nav } from "reactstrap";
 import NavLink from "./NavLink";
-class Header extends Component {
+class Header extends PureComponent {
   render() {
     let loggedIn = false;
     return (
@@ -22,7 +22,6 @@ class Header extends Component {
             </Nav>
           ) : (
             <Nav className="registerBtn">
-              {/* <NavLink url="/login" title="Login" /> */}
               <h2>Welcome Veda!</h2>
               <NavLink url="/logout" title="Logout" />
             </Nav>

@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { deleteProduct } from "../state/actions";
 import { connect } from "react-redux";
 
-class Cart extends Component {
+class Cart extends PureComponent {
   render() {
-    console.log(this.props);
     return (
       <div className="container">
         <div>

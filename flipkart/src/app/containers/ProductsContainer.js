@@ -8,7 +8,8 @@ let mapStateToProps = state => {
     products: state.products.products,
     productsByCategory: state.products.productsByCategory,
     isFetching: state.products.isFetching,
-    error: state.products.error
+    error: state.products.error,
+    cart: state.products.cart
   };
 };
 
