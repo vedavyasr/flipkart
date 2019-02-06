@@ -10,7 +10,10 @@ class Home extends Component {
     return (
       <div>
         <Carousel />
-        {this.props.products.products.map(
+        <hr />
+        <h3>Top Selling Products</h3>
+        <hr />
+        {this.props.products.map(
           product =>
             ++i &&
             i < 5 && (

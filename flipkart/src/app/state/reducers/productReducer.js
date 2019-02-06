@@ -7,7 +7,9 @@ const INITIAL_STATE = {
   userName: "",
   products: [],
   categories: [],
-  error: {}
+  error: {},
+  selectedCategoryId: 0,
+  productsByCategory: []
 };
 
 export default function productReducer(state = INITIAL_STATE, action) {
@@ -21,9 +23,14 @@ export default function productReducer(state = INITIAL_STATE, action) {
     case actions.FETCHING_CATEGORIES_INIT:
       return { ...state, isFetching: true };
     case actions.FETCHING_CATEGORIES_SUCCESS:
-      return { ...state, categories: action.payload, isFetching: false };
+      return { ...state, isFetching: false, categories: action.payload };
     case actions.FETCHING_CATEGORIES_ERROR:
       return { ...state, error: action.payload, isFetching: false };
+    case actions.SAVE_CATEGORY_ID:
+      return { ...state, selectedCategoryId: action.payload };
+    case actions.FILTER_BY_CATEGORY:
+      return { ...state, productsByCategory: action.payload };
+
     default:
       return state;
   }

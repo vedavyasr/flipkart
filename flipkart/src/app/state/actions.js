@@ -68,3 +68,15 @@ export function fetchCategories() {
       });
   };
 }
+
+export const saveCategoryId = id => dispatch => {
+  dispatch({
+    type: actions.SAVE_CATEGORY_ID,
+    payload: id
+  });
+};
+
+export const filterProducts = products => ({
+  type: actions.FILTER_BY_CATEGORY,
+  payload: products
+});

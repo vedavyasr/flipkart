@@ -5,9 +5,9 @@ import Categories from "../components/Categories";
 
 let mapStateToProps = state => {
   return {
-    categories: state.categories,
-    isFetching: state.isFetching,
-    error: state.error
+    categories: state.products.categories,
+    isFetching: state.products.isFetching,
+    error: state.products.error
   };
 };
 

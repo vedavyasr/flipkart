@@ -5,9 +5,9 @@ import Home from "../components/Home";
 
 let mapStateToProps = state => {
   return {
-    products: state.products,
-    isFetching: state.isFetching,
-    error: state.error
+    products: state.products.products,
+    isFetching: state.products.isFetching,
+    error: state.products.error
   };
 };
 
