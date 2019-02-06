@@ -11,7 +11,9 @@ let Categorycard = props => {
         <CardTitle>{props.name}</CardTitle>
         <Button
           onClick={() => {
-            props.click(props.id);            
+            props.click(props.id);
+            props.filter();
+
             props.history.push("/products");
           }}
         >
