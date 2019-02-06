@@ -6,16 +6,30 @@ import Product from "./productCard";
 
 class Products extends Component {
   render() {
-    return this.props.products.products.map(product => (
-      <Product
-        img={product.imageUrl}
-        name={product.name}
-        shortdesc={product.shortDescription}
-        rating={product.ratings.avgRating}
-        totalReviews={product.ratings.totalReviews}
-        key={product.id}
-      />
-    ));
+    console.log(this.props, "in Products");
+
+    return this.props.products.productsByCategory.length
+      ? this.props.products.productsByCategory.map(product => (
+          <Product
+            img={product.imageUrl}
+            name={product.name}
+            shortdesc={product.shortDescription}
+            rating={product.ratings.avgRating}
+            totalReviews={product.ratings.totalReviews}
+            key={product.id}
+          />
+        ))
+      : this.props.products.products.map(product => (
+          <Product
+            img={product.imageUrl}
+            name={product.name}
+            shortdesc={product.shortDescription}
+            rating={product.ratings.avgRating}
+            totalReviews={product.ratings.totalReviews}
+            key={product.id}
+            addToCard={this.props.dispatchers.addToCart}
+          />
+        ));
   }
 }
 

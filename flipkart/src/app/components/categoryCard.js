@@ -12,7 +12,7 @@ let Categorycard = props => {
         <Button
           onClick={() => {
             props.click(props.id);
-            
+            props.filter();
             props.history.push("/products");
           }}
         >

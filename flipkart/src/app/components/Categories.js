@@ -22,6 +22,7 @@ export default class Categories extends Component {
               id={category.id}
               key={category.id}
               click={this.props.dispatchers.saveCategoryId}
+              filter={this.props.dispatchers.filterByCategory}
             />
           ))
         ) : (

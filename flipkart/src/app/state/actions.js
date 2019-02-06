@@ -81,8 +81,24 @@ export const filterProducts = products => ({
   payload: products
 });
 
+export function filterByCategory() {
+  return function filteringProducts(dispatch, getState) {
+    let id = getState().products.selectedCategoryId;
+    let products = getState().products.products;
+    let results = products.filter(({ categoryId }) => categoryId === id);
+    dispatch(filterProducts(results));
+  };
+}
 
-export const deleteProduct = (id) => ({
+export const deleteProduct = id => ({
   type: actions.DELETE_CART_ITEM,
-  payload:id
-})
+  payload: id
+});
+
+export const addToCart = product => dispatch => {
+  dispatch({
+    type: actions.ADD_TO_CART,
+    payload: product
+  });
+};
+
