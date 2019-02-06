@@ -80,3 +80,9 @@ export const filterProducts = products => ({
   type: actions.FILTER_BY_CATEGORY,
   payload: products
 });
+
+
+export const deleteProduct = (id) => ({
+  type: actions.DELETE_CART_ITEM,
+  payload:id
+})
