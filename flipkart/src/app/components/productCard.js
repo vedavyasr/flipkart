@@ -29,15 +29,18 @@ let ProductCard = props => (
         <CardText>{props.shortdesc}</CardText>
         <Button
           onClick={e => {
-            console.log(props," in product card");
-            
             e.stopPropagation();
             props.history.push("/checkout");
           }}
         >
           Buy Now
         </Button>
-        <AddToCartButton disableButton={props.disableButton} addToCart={props.addToCart} disabled={props.disabled} id={props.id} />
+        <AddToCartButton
+          disableButton={props.disableButton}
+          addToCart={props.addToCart}
+          disabled={props.disabled}
+          id={props.id}
+        />
       </CardBody>
     </Card>
   </CardColumns>

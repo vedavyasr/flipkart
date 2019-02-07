@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "C:/Users/m1043143/AppData/Local/Microsoft/TypeScript/3.2/node_modules/redux";
 
 class Cart extends PureComponent {
+  componentWillMount() {
+    this.props.dispatchers.resetCategoryProducts();
+  }
   render() {
     return (
       <div className="container">

@@ -97,8 +97,6 @@ export const deleteProduct = id => ({
 });
 
 export const addToCart = productid => (dispatch, getState) => {
-  console.log("yay13");
-
   let products = getState().products.products;
   let cartItem = products.filter(({ id }) => id === productid);
   dispatch({
@@ -165,8 +163,11 @@ export const enableAddToCart = updatedProducts => ({
   payload: updatedProducts
 });
 
-
-export const changeInputValue=(values)=>({
-  type:actions.PLACE_ORDER,
+export const changeInputValue = values => ({
+  type: actions.PLACE_ORDER,
   values
-})
+});
+
+export const resetCategoryProducts = () => ({
+  type: actions.RESET_CATEGORY_PRODUCTS
+});

@@ -4,7 +4,6 @@ import StarRating from "./StarRating";
 import AddToCartButton from "./AddToCartButton";
 let Productdetails = props => {
   let { productDetail } = props;
-  console.log(props, " productdetails");
   return (
     <div>
       <img src={productDetail[0].imageUrl} alt={productDetail[0].name} />
@@ -19,7 +18,6 @@ let Productdetails = props => {
         disableButton={props.dispatchers.disableButton}
         disabled={props.disabled}
       />
-
       <span>{productDetail[0].views}</span>
       <h3>{productDetail[0].price}</h3>
     </div>

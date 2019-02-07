@@ -20,6 +20,8 @@ export default function categoryReducer(state = INITIAL_STATE, action) {
       return { ...state, selectedCategoryId: action.payload };
     case actions.FILTER_BY_CATEGORY:
       return { ...state, productsByCategory: action.payload };
+    case actions.RESET_CATEGORY_PRODUCTS:
+      return { ...state, productsByCategory: [] };
     default:
       return state;
   }

@@ -7,6 +7,7 @@ import Cart from "./app/components/Cart";
 import Products from "./app/components/Products";
 import Checkout from "./app/components/Checkout";
 import Home from "./app/containers/ProductsContainer";
+import Login from "./app/components/Login";
 import ProductDetails from "./app/containers/ProductDetailsContainer";
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
               <Route path="/cart" exact component={Cart} />
               <Route path="/checkout" exact component={Checkout} />
               <Route path="/products/:id" component={ProductDetails} />
+              <Route path="/login" component={Login} />
             </Switch>
             <Footer />
           </React.Fragment>
