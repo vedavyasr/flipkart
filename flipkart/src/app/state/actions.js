@@ -164,3 +164,9 @@ export const enableAddToCart = updatedProducts => ({
   type: actions.ENABLE_CART,
   payload: updatedProducts
 });
+
+
+export const changeInputValue=(values)=>({
+  type:actions.PLACE_ORDER,
+  values
+})

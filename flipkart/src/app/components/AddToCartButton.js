@@ -6,6 +6,8 @@ export default props =>
   ) : (
     <Button
       onClick={e => {
+        console.log(props,"in add to cart");
+        
         e.stopPropagation();
         props.disableButton(props.id);
         e.target.textContent = "Added To Cart";

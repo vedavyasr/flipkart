@@ -4,11 +4,13 @@ import categoryReducer from "./state/reducers/categoryReducer";
 import cartReducer from "./state/reducers/cartReducer";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
+import shippingReducer from "./state/reducers/ShippingReducer";
 let configureStore = () => {
   const rootReducer = combineReducers({
     products: productReducer,
     categories: categoryReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    shipping: shippingReducer
   });
 
   const store = createStore(rootReducer, applyMiddleware(logger, thunk));
