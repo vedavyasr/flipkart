@@ -5,7 +5,10 @@ import Home from "../components/Home";
 
 let mapStateToProps = state => {
   let topSellingProducts = [];
-  state.products.products.map(top => topSellingProducts.push(top));
+  let i = 0;
+  state.products.products.map(top =>
+    ++i < 5 ? topSellingProducts.push(top) : null
+  );
   return {
     topSellingProducts: topSellingProducts,
     products: state.products.products,

@@ -9,6 +9,7 @@ import Checkout from "./app/components/Checkout";
 import Home from "./app/containers/ProductsContainer";
 import Login from "./app/containers/LoginContainer";
 import ProductDetails from "./app/containers/ProductDetailsContainer";
+import OrderSummary from "./app/components/OrderSummary";
 class App extends Component {
   render() {
     return (
@@ -25,6 +26,7 @@ class App extends Component {
                 <Route path="/checkout" exact component={Checkout} />
                 <Route path="/products/:id" component={ProductDetails} />
                 <Route path="/login" component={Login} />
+                <Route path="/ordersummary" component={OrderSummary} />
               </Switch>
             </React.Fragment>
           </Router>

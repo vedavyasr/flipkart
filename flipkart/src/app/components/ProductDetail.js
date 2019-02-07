@@ -16,7 +16,7 @@ let Productdetails = props => {
         id={productDetail[0].id}
         addToCart={props.dispatchers.addToCart}
         disableButton={props.dispatchers.disableButton}
-        disabled={props.disabled}
+        disabled={productDetail[0].disabled}
       />
       <span>{productDetail[0].views}</span>
       <h3>{productDetail[0].price}</h3>

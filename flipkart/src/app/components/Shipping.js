@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Button, Form } from "reactstrap";
 import InputBox from "./InputBox";
+import { withRouter } from "react-router-dom";
 let values = {};
 class Shipping extends PureComponent {
   handleChangeEvent(event) {
@@ -48,6 +49,7 @@ class Shipping extends PureComponent {
           <Button
             onClick={() => {
               this.props.dispatchers.changeInputValue(values);
+              this.props.history.push('/ordersummary')
             }}
           >
             Place order
@@ -72,4 +74,4 @@ let mapDisptachToProps = (dispatch, getState) => {
 export default connect(
   mapStateToProps,
   mapDisptachToProps
-)(Shipping);
+)( withRouter(Shipping));
