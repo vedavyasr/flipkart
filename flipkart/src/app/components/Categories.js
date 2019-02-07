@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import Category from "./CategoryCard";
+import Category from "./UI/CategoryCard";
 import { Spinner } from "reactstrap";
 export default class Categories extends PureComponent {
   componentWillMount() {

@@ -1,5 +1,5 @@
 import React from "react";
-import InputBox from "./InputBox";
+import InputBox from "./UI/InputBox";
 import { Button, Form } from "reactstrap";
 let values = {};
 function handleChangeEvent(event) {

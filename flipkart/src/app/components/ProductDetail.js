@@ -1,7 +1,7 @@
 import React from "react";
 import { Label } from "reactstrap";
-import StarRating from "./StarRating";
-import AddToCartButton from "./AddToCartButton";
+import StarRating from "./UI/StarRating";
+import AddToCartButton from "./UI/AddToCartButton";
 let Productdetails = props => {
   let { productDetail } = props;
   return (

@@ -99,6 +99,7 @@ export const deleteProduct = id => ({
 export const addToCart = productid => (dispatch, getState) => {
   let products = getState().products.products;
   let cartItem = products.filter(({ id }) => id === productid);
+  cartItem[0].qty = 1;
   dispatch({
     type: actions.ADD_TO_CART,
     payload: cartItem[0]
@@ -190,3 +191,44 @@ export const loginAPI = (username, password) => (dispatch, getState) => {
 export const logout = () => ({
   type: actions.LOGOUT
 });
+
+export const increaseQty = productId => (dispatch, getState) => {
+  let cart = getState().cart.cart;
+
+  const cartIndex = cart.findIndex(obj => obj.id === productId);
+
+  const updatedCartItem = {
+    ...cart[cartIndex],
+    qty: cart[cartIndex].qty + 1
+  };
+
+  const UpdatedCart = [
+    ...cart.slice(0, cartIndex),
+    updatedCartItem,
+    ...cart.slice(cartIndex + 1)
+  ];
+  dispatch({
+    type: actions.INCREASE_QTY,
+    payload: UpdatedCart
+  });
+};
+
+export const decreaseQty = productId => (dispatch, getState) => {
+  let cart = getState().cart.cart;
+
+  const cartIndex = cart.findIndex(obj => obj.id === productId);
+
+  const updatedCartItem = {
+    ...cart[cartIndex],
+    qty: cart[cartIndex].qty - 1
+  };
+  const UpdatedCart = [
+    ...cart.slice(0, cartIndex),
+    updatedCartItem,
+    ...cart.slice(cartIndex + 1)
+  ];
+  dispatch({
+    type: actions.INCREASE_QTY,
+    payload: UpdatedCart
+  });
+};

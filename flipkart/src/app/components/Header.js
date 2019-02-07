@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
-import Link from "./NavLink";
+import Link from "./UI/NavLink";
 import { connect } from "react-redux";
 class Header extends PureComponent {
   componentWillMount() {
