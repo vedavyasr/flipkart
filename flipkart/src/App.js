@@ -7,6 +7,7 @@ import Cart from "./app/components/Cart";
 import Products from "./app/components/Products";
 import Checkout from "./app/components/Checkout";
 import Home from "./app/containers/ProductsContainer";
+import ProductDetails from "./app/containers/ProductDetailsContainer";
 class App extends Component {
   render() {
     return (
@@ -20,6 +21,7 @@ class App extends Component {
               <Route path="/categories" exact component={Categories} />
               <Route path="/cart" exact component={Cart} />
               <Route path="/checkout" exact component={Checkout} />
+              <Route path="/products/:id" component={ProductDetails} />
             </Switch>
             <Footer />
           </React.Fragment>

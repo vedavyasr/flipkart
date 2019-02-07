@@ -25,7 +25,8 @@ export function fetchProducts() {
     axios
       .get("http://reactprojectdbserver.azurewebsites.net/products", config)
       .then(response => {
-        console.log(response, " response");
+        response.data.map(res => (res.disabled = false));
+
         dispatch(fetchingDataSuccess(response.data));
       })
       .catch(err => {
@@ -85,9 +86,7 @@ export function filterByCategory() {
   return function filteringProducts(dispatch, getState) {
     let id = getState().categories.selectedCategoryId;
     let products = getState().products.products;
-
     let results = products.filter(({ categoryId }) => categoryId === id);
-
     dispatch(filterProducts(results));
   };
 }
@@ -98,6 +97,8 @@ export const deleteProduct = id => ({
 });
 
 export const addToCart = productid => (dispatch, getState) => {
+  console.log("yay13");
+
   let products = getState().products.products;
   let cartItem = products.filter(({ id }) => id === productid);
   dispatch({
@@ -112,3 +113,54 @@ export const searchValue = value => dispatch => {
     payload: value
   });
 };
+
+export const productDetail = productId => (dispatch, getState) => {
+  let products = getState().products.products;
+  let product = products.filter(({ id }) => id === productId);
+
+  dispatch({
+    type: actions.GET_PRODUCT_DETAIL,
+    payload: product
+  });
+};
+export const disableCartButton = updatedProducts => ({
+  type: actions.DISABLE_CART,
+  payload: updatedProducts
+});
+
+export const disableButton = productId => (dispatch, getState) => {
+  let products = getState().products.products;
+  const productIndex = products.findIndex(obj => obj.id === productId);
+  const updatedProduct = {
+    ...products[productIndex],
+    disabled: true
+  };
+  const UpdatedProducts = [
+    ...products.slice(0, productIndex),
+    updatedProduct,
+    ...products.slice(productIndex + 1)
+  ];
+  dispatch(addToCart(productId));
+  dispatch(disableCartButton(UpdatedProducts));
+};
+
+export const enableButton = productId => (dispatch, getState) => {
+  let products = getState().products.products;
+  const productIndex = products.findIndex(obj => obj.id === productId);
+  const updatedProduct = {
+    ...products[productIndex],
+    disabled: false
+  };
+  const UpdatedProducts = [
+    ...products.slice(0, productIndex),
+    updatedProduct,
+    ...products.slice(productIndex + 1)
+  ];
+  dispatch(enableAddToCart(UpdatedProducts));
+  dispatch(deleteProduct(productId));
+};
+
+export const enableAddToCart = updatedProducts => ({
+  type: actions.ENABLE_CART,
+  payload: updatedProducts
+});
