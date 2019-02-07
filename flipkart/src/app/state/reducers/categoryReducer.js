@@ -9,8 +9,6 @@ const INITIAL_STATE = {
 };
 
 export default function categoryReducer(state = INITIAL_STATE, action) {
-  console.log("un category reducer", action);
-
   switch (action.type) {
     case actions.FETCHING_CATEGORIES_INIT:
       return { ...state, isFetching: true };

@@ -5,8 +5,6 @@ const INITIAL_STATE = {
 };
 
 export default function categoryReducer(state = INITIAL_STATE, action) {
-  console.log("i am in ", action);
-
   switch (action.type) {
     case actions.DELETE_CART_ITEM:
       return {

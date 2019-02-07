@@ -23,7 +23,6 @@ class Cart extends PureComponent {
                           <button
                             onClick={() => {
                               this.props.dispatchers.enableButton(product.id);
-                              this.props.dispatchers.deleteProduct(product.id);
                             }}
                           >
                             Remove
