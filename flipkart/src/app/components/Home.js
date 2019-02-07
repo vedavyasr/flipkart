@@ -8,7 +8,6 @@ class Home extends PureComponent {
     !this.props.products.length && this.props.dispatchers.fetchProducts();
   }
   render() {
-    let i = 0;
     return (
       <div className="homePage">
         <Carousel />
@@ -18,27 +17,23 @@ class Home extends PureComponent {
         <div className="container-fluid">
           <div className="row">
             {!this.props.products.isFetching ? (
-              this.props.products.map(
-                product =>
-                  ++i &&
-                  i < 5 && (
-                    <Product
-                      img={product.imageUrl}
-                      name={product.name}
-                      shortdesc={product.shortDescription}
-                      rating={product.ratings.avgRating}
-                      totalReviews={product.ratings.totalReviews}
-                      key={product.id}
-                      id={product.id}
-                      addToCart={this.props.dispatchers.addToCart}
-                      cart={this.props.cart}
-                      products={this.props.products}
-                      productDetail={this.props.dispatchers.productDetail}
-                      disabled={product.disabled}
-                      disableButton={this.props.dispatchers.disableButton}
-                    />
-                  )
-              )
+              this.props.topSellingProducts.map(product => (
+                <Product
+                  img={product.imageUrl}
+                  name={product.name}
+                  shortdesc={product.shortDescription}
+                  rating={product.ratings.avgRating}
+                  totalReviews={product.ratings.totalReviews}
+                  key={product.id}
+                  id={product.id}
+                  addToCart={this.props.dispatchers.addToCart}
+                  cart={this.props.cart}
+                  products={this.props.products}
+                  productDetail={this.props.dispatchers.productDetail}
+                  disabled={product.disabled}
+                  disableButton={this.props.dispatchers.disableButton}
+                />
+              ))
             ) : (
               <Spinner style={{ width: "3rem", height: "3rem" }} />
             )}
