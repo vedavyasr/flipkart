@@ -1,60 +1,53 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import * as actions from "../state/actions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form } from "reactstrap";
+import InputBox from "./InputBox";
 let values = {};
-class Shipping extends Component {
+class Shipping extends PureComponent {
   handleChangeEvent(event) {
     values[event.target.name] = event.target.value;
   }
-
   render() {
     return (
       <div className="ShippingForm">
         <Form>
-          <FormGroup>
-            <Label for="exampleEmail">Name:</Label>
-            <Input
-              type="text"
-              name="name"
-              onChange={e => this.handleChangeEvent(e)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleEmail">Address:</Label>
-            <Input
-              type="text"
-              name="address"
-              onChange={e => this.handleChangeEvent(e)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleEmail">City:</Label>
-            <Input
-              type="text"
-              name="city"
-              onChange={e => this.handleChangeEvent(e)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleEmail">State:</Label>
-            <Input
-              type="text"
-              name="state"
-              onChange={e => this.handleChangeEvent(e)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleEmail">Pincode:</Label>
-            <Input
-              type="text"
-              name="pincode"
-              onChange={e => this.handleChangeEvent(e)}
-            />
-          </FormGroup>
+          <InputBox
+            label="Name"
+            type="text"
+            name="name"
+            changeHandle={this.handleChangeEvent}
+          />
+          <InputBox
+            label="Address"
+            type="text"
+            name="address"
+            changeHandle={this.handleChangeEvent}
+          />
+          <InputBox
+            label="City"
+            type="text"
+            name="city"
+            changeHandle={this.handleChangeEvent}
+          />
+          <InputBox
+            label="State"
+            type="text"
+            name="state"
+            changeHandle={this.handleChangeEvent}
+          />
+          <InputBox
+            label="Pincode"
+            type="number"
+            name="pincode"
+            changeHandle={this.handleChangeEvent}
+          />
+
           <Button
-            onClick={() => this.props.dispatchers.changeInputValue(values)}
+            onClick={() => {
+              this.props.dispatchers.changeInputValue(values);
+            }}
           >
             Place order
           </Button>

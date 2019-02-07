@@ -4,6 +4,7 @@ import { Spinner } from "reactstrap";
 export default class Categories extends PureComponent {
   componentWillMount() {
     this.props.dispatchers.fetchCategories();
+    this.props.dispatchers.resetCategoryProducts();
   }
   render() {
     return (
