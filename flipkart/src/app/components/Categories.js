@@ -8,7 +8,7 @@ export default class Categories extends PureComponent {
   }
   render() {
     return (
-      <div>
+      <div className="row">
         {!this.props.isFetching ? (
           this.props.categories.map(category => (
             <Category

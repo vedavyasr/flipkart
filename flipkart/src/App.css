@@ -31,25 +31,36 @@
   }
 }
 
-.menuBtn {
-  float: left;
-  width:80%;
+.homePage .carousel-inner .carousel-item img {
+height:200px;
 }
-.registerBtn {
-  float: right;
-  width:20%;
-}
-.card-columns {
-  display: inline-block;
-  width: 25%;
-}
+.card {margin: 3% 0;text-align: center;}
 .card-columns .card {
   min-width: 300px;
   text-align: center;
   }
-  .card-columns .card .btn-secondary {margin-right: 10px;}
+  .card-img {width:auto !important; height: 135px; padding: 5% 5% 1%;}
+ .card .btn-secondary {margin-right: 10px;}
 footer {
   padding:1%;
   margin: 2% 0 0 0;
   border-top:1px #ccc solid;
+  clear:both;
 }
+.ShippingForm .formField label {
+  font-weight: bold;
+  width:75px;
+}
+.Cart {
+  float: left;
+  width: 49%;
+}
+.Shipping {
+  float: left;
+  width: 49%;
+}
+.nav-tabs {background:#5b5b5b;}
+.nav-tabs .nav-link {color:#fff !important;}
+.nav-tabs .nav-link:hover {border:1px solid transparent !important;}
+.card-title {font-weight:bold;}
+.mainContainer {min-height:600px; overflow: hidden;}

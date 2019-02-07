@@ -1,20 +1,18 @@
 import React from "react";
 import StarRatingComponent from "./StarRating";
 import { withRouter } from "react-router-dom";
-
 import {
   Card,
   Button,
   CardImg,
   CardTitle,
   CardText,
-  CardBody,
-  CardColumns
+  CardBody
 } from "reactstrap";
 import AddToCartButton from "./AddToCartButton";
 
 let ProductCard = props => (
-  <CardColumns>
+  <div className="col-sm-6 col-md-4 col-lg-3">
     <Card
       onClick={() => {
         props.productDetail(props.id);
@@ -43,7 +41,7 @@ let ProductCard = props => (
         />
       </CardBody>
     </Card>
-  </CardColumns>
+  </div>
 );
 
 export default withRouter(ProductCard);

@@ -171,3 +171,22 @@ export const changeInputValue = values => ({
 export const resetCategoryProducts = () => ({
   type: actions.RESET_CATEGORY_PRODUCTS
 });
+
+export const login = token => ({
+  type: actions.LOGIN,
+  payload: token
+});
+
+export const loginAPI = (username, password) => (dispatch, getState) => {
+  axios
+    .post("https://reqres.in/api/login", { username, password })
+    .then(response => {
+      window.sessionStorage.setItem("logged", response.data.token);
+      dispatch(login(response.data.token));
+    })
+    .catch(err => console.log(err));
+};
+
+export const logout = () => ({
+  type: actions.LOGOUT
+});

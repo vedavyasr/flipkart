@@ -4,16 +4,22 @@ import * as actions from "../state/actions";
 import { bindActionCreators } from "redux";
 import Product from "./ProductCard";
 import { Spinner } from "reactstrap";
+
 class Products extends PureComponent {
+  
   componentWillMount() {
     !(
       this.props.categories.productsByCategory.length ||
       this.props.products.products.length
     ) && this.props.dispatchers.fetchProducts();
   }
+ 
   render() {
-    console.log(this.props, "in compoasdf");
-
+    let searchResults = this.props.products.productsToDisplay.filter(value =>
+      value.name
+        .toLowerCase()
+        .includes(this.props.products.searchValue.toLowerCase())
+    );
     return (
       <div>
         <h2>Products</h2>
@@ -26,43 +32,63 @@ class Products extends PureComponent {
         <hr />
         {!this.props.products.isFetching ? (
           this.props.products.searchValue ? (
-            <h2>searching</h2>
+            searchResults.map(product => (
+              <Product
+                img={product.imageUrl}
+                name={product.name}
+                shortdesc={product.shortDescription}
+                rating={product.ratings.avgRating}
+                totalReviews={product.ratings.totalReviews}
+                key={product.id}
+                id={product.id}
+                addToCart={this.props.dispatchers.addToCart}
+                cart={this.props.cart.cart}
+                products={this.props.products.products}
+                productDetail={this.props.dispatchers.productDetail}
+                disabled={product.disabled}
+                disableButton={this.props.dispatchers.disableButton}
+              />
+            ))
           ) : this.props.categories.productsByCategory.length ? (
-            this.props.categories.productsByCategory.map(product => (
-              <Product
-                img={product.imageUrl}
-                name={product.name}
-                shortdesc={product.shortDescription}
-                rating={product.ratings.avgRating}
-                totalReviews={product.ratings.totalReviews}
-                key={product.id}
-                id={product.id}
-                addToCart={this.props.dispatchers.addToCart}
-                cart={this.props.cart.cart}
-                products={this.props.products.products}
-                productDetail={this.props.dispatchers.productDetail}
-                disabled={product.disabled}
-                disableButton={this.props.dispatchers.disableButton}
-              />
-            ))
+            <div className="row">
+              {this.props.categories.productsByCategory.map(product => (
+                <Product
+                  img={product.imageUrl}
+                  name={product.name}
+                  shortdesc={product.shortDescription}
+                  rating={product.ratings.avgRating}
+                  totalReviews={product.ratings.totalReviews}
+                  key={product.id}
+                  id={product.id}
+                  addToCart={this.props.dispatchers.addToCart}
+                  cart={this.props.cart.cart}
+                  products={this.props.products.products}
+                  productDetail={this.props.dispatchers.productDetail}
+                  disabled={product.disabled}
+                  disableButton={this.props.dispatchers.disableButton}
+                />
+              ))}
+            </div>
           ) : (
-            this.props.products.products.map(product => (
-              <Product
-                img={product.imageUrl}
-                name={product.name}
-                shortdesc={product.shortDescription}
-                rating={product.ratings.avgRating}
-                totalReviews={product.ratings.totalReviews}
-                key={product.id}
-                id={product.id}
-                addToCart={this.props.dispatchers.addToCart}
-                cart={this.props.cart.cart}
-                products={this.props.products.products}
-                productDetail={this.props.dispatchers.productDetail}
-                disabled={product.disabled}
-                disableButton={this.props.dispatchers.disableButton}
-              />
-            ))
+            <div className="row">
+              {this.props.products.products.map(product => (
+                <Product
+                  img={product.imageUrl}
+                  name={product.name}
+                  shortdesc={product.shortDescription}
+                  rating={product.ratings.avgRating}
+                  totalReviews={product.ratings.totalReviews}
+                  key={product.id}
+                  id={product.id}
+                  addToCart={this.props.dispatchers.addToCart}
+                  cart={this.props.cart.cart}
+                  products={this.props.products.products}
+                  productDetail={this.props.dispatchers.productDetail}
+                  disabled={product.disabled}
+                  disableButton={this.props.dispatchers.disableButton}
+                />
+              ))}
+            </div>
           )
         ) : (
           <Spinner style={{ width: "3rem", height: "3rem" }} />
