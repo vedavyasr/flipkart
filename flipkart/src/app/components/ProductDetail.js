@@ -16,6 +16,7 @@ let Productdetails = props => {
       <AddToCartButton
         id={productDetail[0].id}
         addToCart={props.dispatchers.addToCart}
+        disableButton={props.dispatchers.disableButton}
       />
       <span>{productDetail[0].views}</span>
       <h3>{productDetail[0].price}</h3>
@@ -24,5 +25,3 @@ let Productdetails = props => {
 };
 
 export default Productdetails;
-
-

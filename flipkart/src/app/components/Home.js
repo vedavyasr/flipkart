@@ -7,6 +7,7 @@ class Home extends PureComponent {
     this.props.dispatchers.fetchProducts();
   }
   render() {
+    console.log(this.props,"un asdfjkbaskdj")
     let i = 0;
     return (
       <div>

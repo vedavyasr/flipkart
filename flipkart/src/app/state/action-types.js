@@ -13,3 +13,4 @@ export const SEARCH_RESULTS = "SEARCH_RESULTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const DISABLE_CART = "DISABLE_CART";
 export const ENABLE_CART = "ENABLE_CART";
+export const PLACE_ORDER = "PLACE_ORDER";

@@ -11,25 +11,27 @@ class Cart extends PureComponent {
           <h1>Cart</h1>
           <table>
             <tbody>
-              {this.props.cart.map((product, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{product.name}</td>
-                    <td>{product.id}</td>
-                    <td>{product.price}</td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          this.props.dispatchers.enableButton(product.id);
-                          this.props.dispatchers.deleteProduct(product.id);
-                        }}
-                      >
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              {this.props.cart.length === 0
+                ? "No Items in Cart"
+                : this.props.cart.map((product, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{product.name}</td>
+                        <td>{product.id}</td>
+                        <td>{product.price}</td>
+                        <td>
+                          <button
+                            onClick={() => {
+                              this.props.dispatchers.enableButton(product.id);
+                              this.props.dispatchers.deleteProduct(product.id);
+                            }}
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
             </tbody>
           </table>
         </div>

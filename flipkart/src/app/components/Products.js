@@ -12,8 +12,8 @@ class Products extends PureComponent {
     ) && this.props.dispatchers.fetchProducts();
   }
   render() {
-    
-    
+    console.log(this.props, "in compoasdf");
+
     return (
       <div>
         <h2>Products</h2>
