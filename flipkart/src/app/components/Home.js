@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Product from "./ProductCard";
 import Carousel from "./Carousel";
-import {Spinner} from "reactstrap";
+import { Spinner } from "reactstrap";
 class Home extends PureComponent {
   componentWillMount() {
     this.props.dispatchers.fetchProducts();
@@ -28,9 +28,12 @@ class Home extends PureComponent {
                     totalReviews={product.ratings.totalReviews}
                     key={product.id}
                     id={product.id}
-                    addToCard={this.props.dispatchers.addToCart}
+                    addToCart={this.props.dispatchers.addToCart}
                     cart={this.props.cart}
                     products={this.props.products}
+                    productDetail={this.props.dispatchers.productDetail}
+                    disabled={product.disabled}
+                    disableButton={this.props.dispatchers.disableButton}
                   />
                 )
             )

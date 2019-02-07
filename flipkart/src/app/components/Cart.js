@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
-import { deleteProduct } from "../state/actions";
+import * as actions from "../state/actions";
 import { connect } from "react-redux";
+import { bindActionCreators } from "C:/Users/m1043143/AppData/Local/Microsoft/TypeScript/3.2/node_modules/redux";
 
 class Cart extends PureComponent {
   render() {
@@ -18,7 +19,10 @@ class Cart extends PureComponent {
                     <td>{product.price}</td>
                     <td>
                       <button
-                        onClick={() => this.props.deleteProduct(product.id)}
+                        onClick={() => {
+                          this.props.dispatchers.enableButton(product.id);
+                          this.props.dispatchers.deleteProduct(product.id);
+                        }}
                       >
                         Remove
                       </button>
@@ -40,7 +44,13 @@ let mapStateToProps = state => {
   };
 };
 
+let mapDisptachToProps = (dispatch, getState) => {
+  return {
+    dispatchers: bindActionCreators(actions, dispatch)
+  };
+};
+
 export default connect(
   mapStateToProps,
-  { deleteProduct }
+  mapDisptachToProps
 )(Cart);

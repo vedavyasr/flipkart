@@ -8,7 +8,8 @@ const INITIAL_STATE = {
   products: [],
   error: {},
   searchValue: "",
-  results: []
+  results: [],
+  productDetail: []
 };
 
 export default function productReducer(state = INITIAL_STATE, action) {
@@ -19,12 +20,23 @@ export default function productReducer(state = INITIAL_STATE, action) {
       return { ...state, products: action.payload, isFetching: false };
     case actions.FETCHING_PRODUCTS_ERROR:
       return { ...state, error: action.payload, isFetching: false };
+    case actions.GET_PRODUCT_DETAIL:
+      return { ...state, productDetail: action.payload };
     case actions.SEARCH_VALUE:
       return {
         ...state,
         searchValue: action.payload
       };
-
+    case actions.DISABLE_CART:
+      return {
+        ...state,
+        products: action.payload
+      };
+    case actions.ENABLE_CART:
+      return {
+        ...state,
+        products: action.payload
+      };
     default:
       return state;
   }

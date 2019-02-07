@@ -12,6 +12,8 @@ class Products extends PureComponent {
     ) && this.props.dispatchers.fetchProducts();
   }
   render() {
+    
+    
     return (
       <div>
         <h2>Products</h2>
@@ -25,8 +27,7 @@ class Products extends PureComponent {
         {!this.props.products.isFetching ? (
           this.props.products.searchValue ? (
             <h2>searching</h2>
-          ) : // this.props.products.productsByCategory
-          this.props.categories.productsByCategory.length ? (
+          ) : this.props.categories.productsByCategory.length ? (
             this.props.categories.productsByCategory.map(product => (
               <Product
                 img={product.imageUrl}
@@ -36,9 +37,12 @@ class Products extends PureComponent {
                 totalReviews={product.ratings.totalReviews}
                 key={product.id}
                 id={product.id}
-                addToCard={this.props.dispatchers.addToCart}
+                addToCart={this.props.dispatchers.addToCart}
                 cart={this.props.cart.cart}
                 products={this.props.products.products}
+                productDetail={this.props.dispatchers.productDetail}
+                disabled={product.disabled}
+                disableButton={this.props.dispatchers.disableButton}
               />
             ))
           ) : (
@@ -51,9 +55,12 @@ class Products extends PureComponent {
                 totalReviews={product.ratings.totalReviews}
                 key={product.id}
                 id={product.id}
-                addToCard={this.props.dispatchers.addToCart}
+                addToCart={this.props.dispatchers.addToCart}
                 cart={this.props.cart.cart}
                 products={this.props.products.products}
+                productDetail={this.props.dispatchers.productDetail}
+                disabled={product.disabled}
+                disableButton={this.props.dispatchers.disableButton}
               />
             ))
           )
