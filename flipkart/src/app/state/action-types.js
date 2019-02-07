@@ -15,3 +15,5 @@ export const DISABLE_CART = "DISABLE_CART";
 export const ENABLE_CART = "ENABLE_CART";
 export const PLACE_ORDER = "PLACE_ORDER";
 export const RESET_CATEGORY_PRODUCTS = "RESET_CATEGORY_PRODUCTS";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";

@@ -1,29 +1,35 @@
 import React, { PureComponent } from "react";
-import { Nav } from "reactstrap";
-import NavLink from "./NavLink";
+import { Nav, NavItem, NavLink } from "reactstrap";
+import Link from "./NavLink";
+import { connect } from "react-redux";
 class Header extends PureComponent {
+  componentWillMount() {
+    window.sessionStorage.clear();
+  }
   render() {
-    let loggedIn = false;
     return (
       <div>
         <Nav tabs>
-          <Nav className="menuBtn">
-            <NavLink url="/" title="Home" />
-            <NavLink url="/categories" title="Categories" />
-            <NavLink url="/products" title="Products" />
-            <NavLink url="/cart" title="Cart" />
-            <NavLink url="/checkout" title="Checkout" />
+          <Nav className="ml-left nav">
+            <Link url="/" title="Home" />
+            <Link url="/categories" title="Categories" />
+            <Link url="/products" title="Products" />
+            <Link url="/cart" title="Cart" />
+            <Link url="/checkout" title="Checkout" />
           </Nav>
 
-          {!loggedIn ? (
-            <Nav className="registerBtn">
-              <NavLink url="/login" title="Login" />
-              <NavLink url="/register" title="Register" />
+          {!this.props.loggedIn ? (
+            <Nav className="ml-auto nav">
+              <Link url="/login" title="Login" />
             </Nav>
           ) : (
             <Nav className="registerBtn">
-              <h2>Welcome Veda!</h2>
-              <NavLink url="/logout" title="Logout" />
+              <h2>Welcome User!</h2>
+              <NavItem>
+                <NavLink style={{ cursor: "pointer" }} href="/login">
+                  Logout!
+                </NavLink>
+              </NavItem>
             </Nav>
           )}
         </Nav>
@@ -31,5 +37,9 @@ class Header extends PureComponent {
     );
   }
 }
-
-export default Header;
+let mapStateToProps = state => {
+  return {
+    loggedIn: state.login.loggedIn
+  };
+};
+export default connect(mapStateToProps)(Header);

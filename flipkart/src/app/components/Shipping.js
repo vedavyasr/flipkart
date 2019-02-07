@@ -12,6 +12,7 @@ class Shipping extends PureComponent {
   render() {
     return (
       <div className="ShippingForm">
+      <h4>Shipping Details</h4>
         <Form>
           <InputBox
             label="Name"

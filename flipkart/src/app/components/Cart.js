@@ -1,42 +1,75 @@
 import React, { PureComponent } from "react";
 import * as actions from "../state/actions";
 import { connect } from "react-redux";
-import { bindActionCreators } from "C:/Users/m1043143/AppData/Local/Microsoft/TypeScript/3.2/node_modules/redux";
-
+import { bindActionCreators } from "redux";
+import { Button } from "reactstrap";
+import { withRouter } from "react-router-dom";
 class Cart extends PureComponent {
   componentWillMount() {
     this.props.dispatchers.resetCategoryProducts();
   }
   render() {
+    let path = this.props.location.pathname.split("/");
     return (
-      <div className="container">
-        <div>
-          <h1>Cart</h1>
-          <table>
-            <tbody>
-              {this.props.cart.length === 0
-                ? "No Items in Cart"
-                : this.props.cart.map((product, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{product.name}</td>
-                        <td>{product.id}</td>
-                        <td>{product.price}</td>
-                        <td>
-                          <button
-                            onClick={() => {
-                              this.props.dispatchers.enableButton(product.id);
-                            }}
-                          >
-                            Remove
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-            </tbody>
-          </table>
-        </div>
+      <div>
+        {this.props.cart.length === 0 ? (
+          "No Items in Cart :("
+        ) : path[1] === "checkout" ? (
+          <div className="table table-responsive">
+            <table className="table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th>QTY</th>
+                  <th>Price</th>
+                </tr>
+                {this.props.cart.map((product, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{product.name}</td>
+                      <td>{product.id}</td>
+                      <td>{product.price}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="table table-responsive">
+            <h1>Cart</h1>
+            <hr />
+            <table className="table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th>QTY</th>
+                  <th>Price</th>
+                  <th>Remove</th>
+                </tr>
+                {this.props.cart.map((product, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{product.name}</td>
+                      <td>{product.id}</td>
+                      <td>{product.price}</td>
+                      <td>
+                        <Button
+                          onClick={() => {
+                            this.props.dispatchers.enableButton(product.id);
+                            this.props.dispatchers.deleteProduct(product.id);
+                          }}
+                        >
+                          Remove
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     );
   }
@@ -57,4 +90,4 @@ let mapDisptachToProps = (dispatch, getState) => {
 export default connect(
   mapStateToProps,
   mapDisptachToProps
-)(Cart);
+)(withRouter(Cart));

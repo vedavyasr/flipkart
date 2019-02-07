@@ -5,14 +5,15 @@ let values = {};
 function handleChangeEvent(event) {
   values[event.target.name] = event.target.value;
 }
+
 export default props => (
   <div>
     <h2>Login</h2>
     <Form>
       <InputBox
-        name="login"
+        name="username"
         type="text"
-        label="Login"
+        label="UserName"
         changeHandle={handleChangeEvent}
       />
       <InputBox
@@ -21,7 +22,13 @@ export default props => (
         label="Password"
         changeHandle={handleChangeEvent}
       />
-      <Button> Login </Button>
+      <Button
+        onClick={() => {
+          props.dispatchers.loginAPI(values.username, values.password);
+        }}
+      >
+        Login
+      </Button>
     </Form>
   </div>
 );

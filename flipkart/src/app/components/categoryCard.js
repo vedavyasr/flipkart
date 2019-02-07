@@ -4,21 +4,23 @@ import { withRouter } from "react-router-dom";
 
 let Categorycard = props => {
   return (
-    <Card style={{ width: "300px" }}>
-      <CardImg src={props.img} alt={props.name} />
-      <CardBody>
-        <CardTitle>{props.name}</CardTitle>
-        <Button
-          onClick={() => {
-            props.click(props.id);
-            props.filter();
-            props.history.push("/products");
-          }}
-        >
-          More
-        </Button>
-      </CardBody>
-    </Card>
+    <div className="col-sm-6 col-md-4 col-lg-3">
+      <Card>
+        <CardImg src={props.img} alt={props.name} />
+        <CardBody>
+          <CardTitle>{props.name}</CardTitle>
+          <Button
+            onClick={() => {
+              props.click(props.id);
+              props.filter();
+              props.history.push("/products");
+            }}
+          >
+            More
+          </Button>
+        </CardBody>
+      </Card>
+    </div>
   );
 };
 
