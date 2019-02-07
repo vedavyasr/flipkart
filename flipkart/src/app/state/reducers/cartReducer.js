@@ -16,7 +16,16 @@ export default function categoryReducer(state = INITIAL_STATE, action) {
         ...state,
         cart: [...state.cart, action.payload]
       };
-
+    case actions.INCREASE_QTY:
+      return {
+        ...state,
+        cart: action.payload
+      };
+    case actions.DECREASE_QTY:
+      return {
+        ...state,
+        cart: action.payload
+      };
     default:
       return state;
   }

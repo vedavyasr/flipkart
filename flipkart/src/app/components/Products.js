@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import * as actions from "../state/actions";
 import { bindActionCreators } from "redux";
-import Product from "./ProductCard";
+import Product from "./UI/ProductCard";
 import { Spinner } from "reactstrap";
 
 class Products extends PureComponent {

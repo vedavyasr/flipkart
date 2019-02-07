@@ -17,3 +17,5 @@ export const PLACE_ORDER = "PLACE_ORDER";
 export const RESET_CATEGORY_PRODUCTS = "RESET_CATEGORY_PRODUCTS";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const INCREASE_QTY = "INCREASE_QTY";
+export const DECREASE_QTY = "DECREASE_QTY";

@@ -1,5 +1,5 @@
 import React from "react";
-import Shipping from "./Shipping";
+import Shipping from "../containers/ShippingContainer";
 import Cart from "./Cart";
 export default () => (
   <div>

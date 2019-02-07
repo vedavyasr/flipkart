@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
-import Product from "./ProductCard";
-import Carousel from "./Carousel";
+import Product from "./UI/ProductCard";
+import Carousel from "./UI/Carousel";
 import { Spinner } from "reactstrap";
 class Home extends PureComponent {
   componentWillMount() {

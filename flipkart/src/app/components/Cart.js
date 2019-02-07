@@ -27,8 +27,8 @@ class Cart extends PureComponent {
                   return (
                     <tr key={index}>
                       <td>{product.name}</td>
-                      <td>{product.id}</td>
-                      <td>{product.price}</td>
+                      <td>{product.qty}</td>
+                      <td>{product.price * product.qty}</td>
                     </tr>
                   );
                 })}
@@ -51,8 +51,25 @@ class Cart extends PureComponent {
                   return (
                     <tr key={index}>
                       <td>{product.name}</td>
-                      <td>{product.id}</td>
-                      <td>{product.price}</td>
+                      <td>
+                        <Button
+                          onClick={() =>
+                            product.qty > 1 &&
+                            this.props.dispatchers.decreaseQty(product.id)
+                          }
+                        >
+                          -1
+                        </Button>
+                        {product.qty}
+                        <Button
+                          onClick={() =>
+                            this.props.dispatchers.increaseQty(product.id)
+                          }
+                        >
+                          +1
+                        </Button>
+                      </td>
+                      <td>{product.price * product.qty}</td>
                       <td>
                         <Button
                           onClick={() => {
@@ -68,6 +85,9 @@ class Cart extends PureComponent {
                 })}
               </tbody>
             </table>
+            <Button onClick={() => this.props.history.push("/checkout")}>
+              Checkout->
+            </Button>
           </div>
         )}
       </div>
