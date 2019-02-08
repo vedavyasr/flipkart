@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./app/components/Header";
 import Footer from "./app/components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
 // import Categories from "./app/containers/CategoriesContainer";
 import Cart from "./app/components/Cart";
 import Products from "./app/components/Products";
@@ -12,6 +13,8 @@ import ProductDetails from "./app/containers/ProductDetailsContainer";
 import OrderSummary from "./app/components/OrderSummary";
 import Loadable from "react-loadable";
 import { Spinner } from "reactstrap";
+import Error from "./app/components/UI/Counter";
+import AuthRoute from "./app/components/UI/AuthRoute";
 const Loading = () => (
   <div>
     <Spinner style={{ width: "3rem", height: "3rem" }} />
@@ -26,6 +29,7 @@ const LazyLoadableCategories = Loadable({
 
 class App extends Component {
   render() {
+    console.log(this.props, "sdfjal");
     return (
       <div className="container">
         <div className="mainContainer">
@@ -41,19 +45,30 @@ class App extends Component {
                   component={LazyLoadableCategories}
                 />
                 <Route path="/cart" exact component={Cart} />
-                <Route path="/checkout" exact component={Checkout} />
+                {/* <Route path="/checkout" exact component={Checkout} /> */}
                 <Route path="/products/:id" component={ProductDetails} />
                 <Route path="/login" component={Login} />
+                <AuthRoute
+                  path="/checkout"
+                  authenticated={this.props.authenticated.token}
+                  component={Checkout}
+                />
                 <Route path="/ordersummary" component={OrderSummary} />
+                <Route path="*" component={Error} />
               </Switch>
             </React.Fragment>
           </Router>
         </div>
-
         <Footer />
       </div>
     );
   }
 }
 
-export default App;
+let mapStateToProps = state => {
+  return {
+    authenticated: state.login
+  };
+};
+
+export default connect(mapStateToProps)(App);

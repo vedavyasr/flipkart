@@ -7,7 +7,8 @@ import {
   CardImg,
   CardTitle,
   CardText,
-  CardBody,ButtonGroup
+  CardBody,
+  ButtonGroup
 } from "reactstrap";
 import AddToCartButton from "./AddToCartButton";
 
@@ -17,6 +18,7 @@ let ProductCard = props => (
       onClick={() => {
         props.productDetail(props.id);
         props.history.push(`${"/products/:" + props.id}`);
+        
       }}
       style={{ cursor: "pointer" }}
     >

@@ -4,7 +4,9 @@ import Carousel from "./UI/Carousel";
 import { Spinner } from "reactstrap";
 class Home extends PureComponent {
   componentWillMount() {
-    this.props.dispatchers.resetCategoryProducts();
+    if (this.props.productsByCategory.length)
+      this.props.dispatchers.resetCategoryProducts();
+
     !this.props.products.length && this.props.dispatchers.fetchProducts();
   }
   render() {

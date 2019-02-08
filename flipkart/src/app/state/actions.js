@@ -179,10 +179,11 @@ export const login = token => ({
 });
 
 export const loginAPI = (username, password) => (dispatch, getState) => {
+  console.log(username, password);
   axios
     .post("https://reqres.in/api/login", { username, password })
     .then(response => {
-      window.sessionStorage.setItem("logged", response.data.token);
+      window.localStorage.setItem("logged", response.data.token);
       dispatch(login(response.data.token));
     })
     .catch(err => console.log(err));
@@ -219,7 +220,7 @@ export const decreaseQty = productId => (dispatch, getState) => {
   let cart = getState().cart.cart;
 
   const cartIndex = cart.findIndex(obj => obj.id === productId);
-  console.log(cartIndex, "cartIndex");
+
   const updatedCartItem = {
     ...cart[cartIndex],
     qty: cart[cartIndex].qty - 1
@@ -233,9 +234,7 @@ export const decreaseQty = productId => (dispatch, getState) => {
 
   let cartItems = [];
   cart.map(item => cartItems.push({ id: item.id, qty: item.qty }));
-  console.log(updatedCartItem, "console.log(updatedCartItem);");
-  console.log(cartItems, "console.log(updatedCartItem);");
-  console.log(UpdatedCart, "UpdatedCart");
+
   dispatch({
     type: actions.DECREASE_QTY,
     payload: { UpdatedCart, cartItems }
