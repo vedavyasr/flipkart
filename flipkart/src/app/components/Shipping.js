@@ -9,52 +9,59 @@ function handleChangeEvent(event) {
 }
 
 let Shipping = props => {
+  console.log(props, " ins hipping");
+
   return (
     <div className="ShippingForm">
       <h4>Shipping Details</h4>
-      <Form>
+      <Form
+        onSubmit={() => {
+          props.dispatchers.saveSummary(values);
+          props.history.push("/ordersummary");
+        }}
+      >
         <InputBox
           label="Name"
           type="text"
           name="name"
           changeHandle={handleChangeEvent}
+          required
         />
         <InputBox
           label="Address"
           type="text"
           name="address"
           changeHandle={handleChangeEvent}
+          required
         />
         <InputBox
           label="City"
           type="text"
           name="city"
           changeHandle={handleChangeEvent}
+          required
         />
         <InputBox
           label="State"
           type="text"
           name="state"
           changeHandle={handleChangeEvent}
+          required
         />
         <InputBox
           label="Pincode"
           type="number"
           name="pincode"
           changeHandle={handleChangeEvent}
+          required
         />
 
-        <Button
-          onClick={() => {
-            props.dispatchers.changeInputValue(values);
-            props.history.push("/ordersummary");
-          }}
-        >
-          Place order
-        </Button>
+        <Button>Place order</Button>
       </Form>
     </div>
   );
 };
+
+
 
 export default withRouter(Shipping);

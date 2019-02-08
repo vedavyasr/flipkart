@@ -1,7 +1,7 @@
 import * as actions from "../action-types";
 
 const INITIAL_STATE = {
-  isFetching: false,
+  isFetching: Boolean,
   products: [],
   error: {},
   searchValue: "",

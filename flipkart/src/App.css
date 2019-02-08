@@ -32,24 +32,30 @@
 }
 
 .homePage .carousel-inner .carousel-item img {
-height:200px;
+  height: 200px;
 }
-.card {margin: 3% 0;text-align: center;}
+.card {
+  margin: 3% 0;
+  text-align: center;
+}
 .card-columns .card {
   min-width: 300px;
   text-align: center;
-  }
-  .card-img {width:auto !important; height: 135px; padding: 5% 5% 1%;}
- .card .btn-secondary {margin-right: 10px;}
+}
+.card-img {
+  width: auto !important;
+  height: 135px;
+  padding: 5% 5% 1%;
+}
 footer {
-  padding:1%;
+  padding: 1%;
   margin: 2% 0 0 0;
-  border-top:1px #ccc solid;
-  clear:both;
+  border-top: 1px #ccc solid;
+  clear: both;
 }
 .ShippingForm .formField label {
   font-weight: bold;
-  width:75px;
+  width: 75px;
 }
 .Cart {
   float: left;
@@ -59,8 +65,50 @@ footer {
   float: left;
   width: 49%;
 }
-.nav-tabs {background:#5b5b5b;}
-.nav-tabs .nav-link {color:#fff !important;}
-.nav-tabs .nav-link:hover {border:1px solid transparent !important;}
-.card-title {font-weight:bold;}
-.mainContainer {min-height:600px; overflow: hidden;}
+.nav-tabs {
+  background: #5b5b5b;
+}
+.nav-tabs .nav-link {
+  color: #fff !important;
+}
+.nav-tabs .nav-link:hover {
+  border: 1px solid transparent !important;
+}
+.card-title {
+  font-weight: bold;
+}
+.mainContainer {
+  min-height: 600px;
+  overflow: hidden;
+}
+.btn-secondary {
+  border-color: #ffffff;
+  font-size: 0.9rem;
+}
+img.h200 {
+  height: 200px;
+}
+.mt45m {
+  margin-top: -45px;
+}
+.labelName {
+  font-weight: bold;
+  margin-right: 5px;
+}
+.productDetail {
+  margin: 15px 0 0;
+}
+.productDetail .mleft40 {
+  margin-top: 10px;
+}
+.mleft40 {
+  margin-left: 40px;
+}
+.noOfRating {
+  top: 5px;
+  position: relative;
+  left: 5px;
+}
+.productPrice {
+  margin: 15px 0 20px 0;
+}

@@ -179,10 +179,11 @@ export const login = token => ({
 });
 
 export const loginAPI = (username, password) => (dispatch, getState) => {
+  console.log(username, password);
   axios
     .post("https://reqres.in/api/login", { username, password })
     .then(response => {
-      window.sessionStorage.setItem("logged", response.data.token);
+      window.localStorage.setItem("logged", response.data.token);
       dispatch(login(response.data.token));
     })
     .catch(err => console.log(err));
@@ -207,9 +208,11 @@ export const increaseQty = productId => (dispatch, getState) => {
     updatedCartItem,
     ...cart.slice(cartIndex + 1)
   ];
+  let cartItems = [];
+  cart.map(item => cartItems.push({ id: item.id, qty: item.qty }));
   dispatch({
     type: actions.INCREASE_QTY,
-    payload: UpdatedCart
+    payload: { UpdatedCart, cartItems }
   });
 };
 
@@ -222,13 +225,51 @@ export const decreaseQty = productId => (dispatch, getState) => {
     ...cart[cartIndex],
     qty: cart[cartIndex].qty - 1
   };
+
   const UpdatedCart = [
     ...cart.slice(0, cartIndex),
     updatedCartItem,
     ...cart.slice(cartIndex + 1)
   ];
+
+  let cartItems = [];
+  cart.map(item => cartItems.push({ id: item.id, qty: item.qty }));
+
   dispatch({
-    type: actions.INCREASE_QTY,
-    payload: UpdatedCart
+    type: actions.DECREASE_QTY,
+    payload: { UpdatedCart, cartItems }
   });
 };
+
+export const cartTotal = total => ({
+  type: actions.CART_TOTAL,
+  payload: total
+});
+
+export function saveSummary(data) {
+  return function saving(dispatch, getState) {
+    dispatch(changeInputValue(data));
+    let cart = getState().cart.cartItems;
+    let total = getState().cart.total;
+    let values = {};
+    values.userId = Math.floor(Math.random() * 10);
+    values.userDetails = data;
+    values.products = cart;
+    values.amountPaid = total;
+
+    dispatch({ type: actions.SAVE_SUMMARY_INIT });
+    axios
+      .post("http://reactprojectdbserver.azurewebsites.net/orders", values)
+      .then(response => {
+        console.log(response);
+        dispatch({
+          type: actions.SAVE_SUMMARY_SUCCESS,
+          payload: response.data.id
+        });
+      })
+      .catch(err => {
+        console.log(err, "err in savesumamry");
+        dispatch({ type: actions.SAVE_SUMMARY_ERROR, payload: err });
+      });
+  };
+}

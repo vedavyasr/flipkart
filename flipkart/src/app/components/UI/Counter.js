@@ -1,7 +1,7 @@
-// import React from "react";
-// import { Button } from "reactstrap";
-// export default () => (
-//   <div>
-//     <Button onClick={()=>}>Increment</Button>
-//   </div>
-// );
+import React from 'react';
+
+export default ()=>(
+    <div>
+        Eroorr
+    </div>
+)

@@ -2,11 +2,14 @@ import React, { PureComponent } from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
 import Link from "./UI/NavLink";
 import { connect } from "react-redux";
+import * as actions from "../state/actions";
+import { bindActionCreators } from "redux";
 class Header extends PureComponent {
   componentWillMount() {
     window.sessionStorage.clear();
   }
   render() {
+    console.log(this.props, "in compoie");
     return (
       <div>
         <Nav tabs>
@@ -20,13 +23,18 @@ class Header extends PureComponent {
 
           {!this.props.loggedIn ? (
             <Nav className="ml-auto nav">
-              <Link url="/login" title="Login" />
+              <Link url="/login" title="Login" login={this.props.loggedIn} />
             </Nav>
           ) : (
             <Nav className="registerBtn">
               <h2>Welcome User!</h2>
               <NavItem>
-                <NavLink style={{ cursor: "pointer" }} href="/login">
+                <NavLink
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    this.props.dispatchers.logout();
+                  }}
+                >
                   Logout!
                 </NavLink>
               </NavItem>
@@ -42,4 +50,12 @@ let mapStateToProps = state => {
     loggedIn: state.login.loggedIn
   };
 };
-export default connect(mapStateToProps)(Header);
+let mapDisptachToProps = (dispatch, getState) => {
+  return {
+    dispatchers: bindActionCreators(actions, dispatch)
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDisptachToProps
+)(Header);

@@ -5,7 +5,8 @@ import Shipping from "../components/Shipping";
 
 let mapStateToProps = state => {
   return {
-    shipping: state
+    shipping: state.shipping,
+    total: state.cart.total
   };
 };
 let mapDisptachToProps = (dispatch, getState) => {

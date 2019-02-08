@@ -19,3 +19,8 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const INCREASE_QTY = "INCREASE_QTY";
 export const DECREASE_QTY = "DECREASE_QTY";
+export const CART_TOTAL = "CART_TOTAL";
+export const SAVE_SUMMARY_INIT = "SAVE_SUMMARY_INIT";
+export const SAVE_SUMMARY_SUCCESS = "SAVE_SUMMARY_SUCCESS";
+export const SAVE_SUMMARY_ERROR = "SAVE_SUMMARY_ERROR";
+

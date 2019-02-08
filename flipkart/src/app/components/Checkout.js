@@ -1,15 +1,18 @@
 import React from "react";
 import Shipping from "../containers/ShippingContainer";
 import Cart from "./Cart";
+import {Card} from 'reactstrap'
 export default () => (
   <div>
-    <h1>Checkout</h1>
     <hr />
-    <div className="Cart">
-      <Cart  display="none"/>
-    </div>
-    <div className="Shipping">
+    <h1 className="text-center">Checkout</h1>
+    <hr />
+    <Card className="Cart">
+      <Cart display="none" />
+    </Card>
+    
+    <Card className="Shipping">
       <Shipping />
-    </div>
+    </Card>
   </div>
 );

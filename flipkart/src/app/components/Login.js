@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from 'react-router-dom';
 import InputBox from "./UI/InputBox";
 import { Button, Form } from "reactstrap";
 let values = {};
@@ -6,7 +7,12 @@ function handleChangeEvent(event) {
   values[event.target.name] = event.target.value;
 }
 
-export default props => (
+export default props => {
+  console.log(props,'props')
+  if(props.logged){
+    return <Redirect to="/"/>
+  }
+  return(
   <div>
     <h2>Login</h2>
     <Form>
@@ -31,4 +37,4 @@ export default props => (
       </Button>
     </Form>
   </div>
-);
+      )};
