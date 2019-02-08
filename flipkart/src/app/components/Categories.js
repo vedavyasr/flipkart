@@ -1,10 +1,17 @@
 import React, { PureComponent } from "react";
 import Category from "./UI/CategoryCard";
 import { Spinner } from "reactstrap";
+
 export default class Categories extends PureComponent {
+  
   componentWillMount() {
-    this.props.dispatchers.fetchCategories();
-    this.props.dispatchers.resetCategoryProducts();
+    if (this.props.categories.length === 0) {
+      this.props.dispatchers.fetchCategories();
+    }
+
+    if (this.props.productsByCategory.length) {
+      this.props.dispatchers.resetCategoryProducts();
+    }
   }
   render() {
     return (
