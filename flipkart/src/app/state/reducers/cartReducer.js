@@ -1,7 +1,9 @@
 import * as actions from "../action-types";
 
 const INITIAL_STATE = {
-  cart: []
+  cart: [],
+  cartItems: [],
+  total: 0
 };
 
 export default function categoryReducer(state = INITIAL_STATE, action) {
@@ -19,12 +21,19 @@ export default function categoryReducer(state = INITIAL_STATE, action) {
     case actions.INCREASE_QTY:
       return {
         ...state,
-        cart: action.payload
+        cart: action.payload.UpdatedCart,
+        cartItems: action.payload.cartItems
       };
     case actions.DECREASE_QTY:
       return {
         ...state,
-        cart: action.payload
+        cart: action.payload.UpdatedCart,
+        cartItems: action.payload.cartItems
+      };
+    case actions.CART_TOTAL:
+      return {
+        ...state,
+        total: action.payload
       };
     default:
       return state;

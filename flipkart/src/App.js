@@ -11,10 +11,10 @@ import Login from "./app/containers/LoginContainer";
 import ProductDetails from "./app/containers/ProductDetailsContainer";
 import OrderSummary from "./app/components/OrderSummary";
 import Loadable from "react-loadable";
-
+import { Spinner } from "reactstrap";
 const Loading = () => (
   <div>
-    <h2>Loading Module..</h2>
+    <Spinner style={{ width: "3rem", height: "3rem" }} />
   </div>
 );
 
@@ -35,7 +35,11 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/products" exact component={Products} />
-                <Route path="/categories" exact component={LazyLoadableCategories} />
+                <Route
+                  path="/categories"
+                  exact
+                  component={LazyLoadableCategories}
+                />
                 <Route path="/cart" exact component={Cart} />
                 <Route path="/checkout" exact component={Checkout} />
                 <Route path="/products/:id" component={ProductDetails} />
@@ -45,6 +49,7 @@ class App extends Component {
             </React.Fragment>
           </Router>
         </div>
+
         <Footer />
       </div>
     );

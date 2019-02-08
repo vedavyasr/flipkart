@@ -4,7 +4,7 @@ export default props =>
   props.disabled ? (
     <Button disabled={props.disabled}>Added To Cart</Button>
   ) : (
-    <Button
+    <Button className="cartBtn"
       onClick={e => {
         console.log(props.disabled);
         e.stopPropagation();

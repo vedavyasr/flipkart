@@ -9,6 +9,8 @@ function handleChangeEvent(event) {
 }
 
 let Shipping = props => {
+  console.log(props," ins hipping");
+  
   return (
     <div className="ShippingForm">
       <h4>Shipping Details</h4>
@@ -46,7 +48,8 @@ let Shipping = props => {
 
         <Button
           onClick={() => {
-            props.dispatchers.changeInputValue(values);
+          
+            props.dispatchers.saveSummary(values);
             props.history.push("/ordersummary");
           }}
         >

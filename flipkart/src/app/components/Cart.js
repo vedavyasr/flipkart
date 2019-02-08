@@ -2,8 +2,9 @@ import React, { PureComponent } from "react";
 import * as actions from "../state/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "reactstrap";
+import { Button, Input, Label } from "reactstrap";
 import { withRouter } from "react-router-dom";
+
 class Cart extends PureComponent {
   componentWillMount() {
     if (this.props.categoryProducts.length) {
@@ -11,10 +12,11 @@ class Cart extends PureComponent {
     }
   }
   render() {
+    let total = 0;
     return (
       <div>
         {this.props.cart.length === 0 ? (
-          "No Items in Cart :("
+          <h2>No Items in Cart :'(</h2>
         ) : (
           <div className="table table-responsive">
             <h1>Cart</h1>
@@ -25,9 +27,10 @@ class Cart extends PureComponent {
                   <th>Name</th>
                   <th>QTY</th>
                   <th>Price</th>
-                  <th style={{ display: this.props.display }}>Remove</th>
+                  {this.props.display ? null : <th>Remove</th>}
                 </tr>
-                {this.props.cart.map((product, index) => { 
+                {this.props.cart.map((product, index) => {
+                  total = total + product.price * product.qty;
                   return (
                     <tr key={index}>
                       <td>{product.name}</td>
@@ -63,10 +66,31 @@ class Cart extends PureComponent {
                     </tr>
                   );
                 })}
+                <tr>
+                  <td>
+                    <Label>Total: </Label>
+                  </td>
+                  <td>
+                    {this.props.disabled ? (
+                      <Input
+                        type="Amount"
+                        value={total}
+                        style={{ disabled: true }}
+                        onChange={() => {}}
+                      />
+                    ) : (
+                      <Input type="Amount" value={total} onChange={() => {}} />
+                    )}
+                  </td>
+                </tr>
               </tbody>
             </table>
+
             <Button
-              onClick={() => this.props.history.push("/checkout")}
+              onClick={() => {
+                this.props.dispatchers.cartTotal(total);
+                this.props.history.push("/checkout");
+              }}
               style={{ display: this.props.display }}
             >
               Checkout==>>

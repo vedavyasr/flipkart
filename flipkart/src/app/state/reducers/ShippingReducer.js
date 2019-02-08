@@ -1,7 +1,10 @@
 import * as actions from "../action-types";
 
 const INITIAL_STATE = {
-  values: {}
+  userDetails: {},
+  isLoading: Boolean,
+  orderId: 0,
+  error: {}
 };
 
 export default function shippingReducer(state = INITIAL_STATE, action) {
@@ -11,6 +14,12 @@ export default function shippingReducer(state = INITIAL_STATE, action) {
         ...state,
         values: action.values
       };
+    case actions.SAVE_SUMMARY_INIT:
+      return { ...state, isLoading: true };
+    case actions.SAVE_SUMMARY_ERROR:
+      return { ...state, isLoading: false, error: action.payload };
+    case actions.SAVE_SUMMARY_SUCCESS:
+      return { ...state, isLoading: false, orderId: action.payload };
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import {
   CardImg,
   CardTitle,
   CardText,
-  CardBody
+  CardBody,ButtonGroup
 } from "reactstrap";
 import AddToCartButton from "./AddToCartButton";
 
@@ -25,20 +25,24 @@ let ProductCard = props => (
         <CardTitle>{props.name}</CardTitle>
         <StarRatingComponent rating={props.rating} />
         <CardText>{props.shortdesc}</CardText>
-        <Button
-          onClick={e => {
-            e.stopPropagation();
-            props.history.push("/checkout");
-          }}
-        >
-          Buy Now
-        </Button>
-        <AddToCartButton
-          disableButton={props.disableButton}
-          addToCart={props.addToCart}
-          disabled={props.disabled}
-          id={props.id}
-        />
+        <ButtonGroup>
+          <Button
+            className="buyNowBtn"
+            onClick={e => {
+              e.stopPropagation();
+              props.history.push("/checkout");
+            }}
+          >
+            Buy Now
+          </Button>
+          <AddToCartButton
+            className="cartBtn"
+            disableButton={props.disableButton}
+            addToCart={props.addToCart}
+            disabled={props.disabled}
+            id={props.id}
+          />
+        </ButtonGroup>
       </CardBody>
     </Card>
   </div>

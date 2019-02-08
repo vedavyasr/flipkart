@@ -2,7 +2,7 @@ import * as actions from "../action-types";
 
 let INITIAL_STATE = {
   loggedIn: false,
-  isFetching: false,
+  isFetching: Boolean,
   userName: "",
   token: "",
   values: {}
