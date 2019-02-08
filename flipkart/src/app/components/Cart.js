@@ -6,35 +6,15 @@ import { Button } from "reactstrap";
 import { withRouter } from "react-router-dom";
 class Cart extends PureComponent {
   componentWillMount() {
-    this.props.dispatchers.resetCategoryProducts();
+    if (this.props.categoryProducts.length) {
+      this.props.dispatchers.resetCategoryProducts();
+    }
   }
   render() {
-    let path = this.props.location.pathname.split("/");
     return (
       <div>
         {this.props.cart.length === 0 ? (
           "No Items in Cart :("
-        ) : path[1] === "checkout" ? (
-          <div className="table table-responsive">
-            <table className="table-bordered">
-              <tbody>
-                <tr>
-                  <th>Name</th>
-                  <th>QTY</th>
-                  <th>Price</th>
-                </tr>
-                {this.props.cart.map((product, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{product.name}</td>
-                      <td>{product.qty}</td>
-                      <td>{product.price * product.qty}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
         ) : (
           <div className="table table-responsive">
             <h1>Cart</h1>
@@ -45,9 +25,9 @@ class Cart extends PureComponent {
                   <th>Name</th>
                   <th>QTY</th>
                   <th>Price</th>
-                  <th>Remove</th>
+                  <th style={{ display: this.props.display }}>Remove</th>
                 </tr>
-                {this.props.cart.map((product, index) => {
+                {this.props.cart.map((product, index) => { 
                   return (
                     <tr key={index}>
                       <td>{product.name}</td>
@@ -70,7 +50,7 @@ class Cart extends PureComponent {
                         </Button>
                       </td>
                       <td>{product.price * product.qty}</td>
-                      <td>
+                      <td style={{ display: this.props.display }}>
                         <Button
                           onClick={() => {
                             this.props.dispatchers.enableButton(product.id);
@@ -85,8 +65,11 @@ class Cart extends PureComponent {
                 })}
               </tbody>
             </table>
-            <Button onClick={() => this.props.history.push("/checkout")}>
-              Checkout->
+            <Button
+              onClick={() => this.props.history.push("/checkout")}
+              style={{ display: this.props.display }}
+            >
+              Checkout==>>
             </Button>
           </div>
         )}
@@ -97,7 +80,8 @@ class Cart extends PureComponent {
 
 let mapStateToProps = state => {
   return {
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    categoryProducts: state.categories.productsByCategory
   };
 };
 

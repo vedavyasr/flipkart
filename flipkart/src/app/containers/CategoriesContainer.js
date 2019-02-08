@@ -4,12 +4,11 @@ import { bindActionCreators } from "redux";
 import Categories from "../components/Categories";
 
 let mapStateToProps = state => {
-  console.log(state," in cate");
-  
   return {
     categories: state.categories.categories,
     isFetching: state.categories.isFetching,
-    error: state.categories.error
+    error: state.categories.error,
+    productsByCategory: state.categories.productsByCategory
   };
 };
 

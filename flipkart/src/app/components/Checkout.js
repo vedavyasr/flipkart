@@ -6,7 +6,7 @@ export default () => (
     <h1>Checkout</h1>
     <hr />
     <div className="Cart">
-      <Cart />
+      <Cart  display="none"/>
     </div>
     <div className="Shipping">
       <Shipping />
