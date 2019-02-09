@@ -2,24 +2,18 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import * as actions from "../state/actions";
 import { bindActionCreators } from "redux";
-import Product from "./UI/ProductCard";
 import { Spinner } from "reactstrap";
-
+import Search from "./UI/Search";
+import Helper from "./UI/ProductCardHelper";
 class Products extends PureComponent {
-  
   componentWillMount() {
     !(
       this.props.categories.productsByCategory.length ||
       this.props.products.products.length
     ) && this.props.dispatchers.fetchProducts();
   }
- 
+
   render() {
-    let searchResults = this.props.products.productsToDisplay.filter(value =>
-      value.name
-        .toLowerCase()
-        .includes(this.props.products.searchValue.toLowerCase())
-    );
     return (
       <div>
         <h2>Products</h2>
@@ -31,64 +25,42 @@ class Products extends PureComponent {
         />
         <hr />
         {!this.props.products.isFetching ? (
-          this.props.products.searchValue ? (
-            searchResults.map(product => (
-              <Product
-                img={product.imageUrl}
-                name={product.name}
-                shortdesc={product.shortDescription}
-                rating={product.ratings.avgRating}
-                totalReviews={product.ratings.totalReviews}
-                key={product.id}
-                id={product.id}
-                addToCart={this.props.dispatchers.addToCart}
+          this.props.categories.productsByCategory.length ? (
+            this.props.products.searchValue ? (
+              <Search
+                searchValue={this.props.products.searchValue}
+                products={this.props.categories.productsByCategory}
+                addToCartDispatcher={this.props.dispatchers.addToCart}
+                productDetailDispatcher={this.props.dispatchers.productDetail}
+                disableButtonDispatcher={this.props.dispatchers.disableButton}
                 cart={this.props.cart.cart}
-                products={this.props.products.products}
-                productDetail={this.props.dispatchers.productDetail}
-                disabled={product.disabled}
-                disableButton={this.props.dispatchers.disableButton}
               />
-            ))
-          ) : this.props.categories.productsByCategory.length ? (
-            <div className="row">
-              {this.props.categories.productsByCategory.map(product => (
-                <Product
-                  img={product.imageUrl}
-                  name={product.name}
-                  shortdesc={product.shortDescription}
-                  rating={product.ratings.avgRating}
-                  totalReviews={product.ratings.totalReviews}
-                  key={product.id}
-                  id={product.id}
-                  addToCart={this.props.dispatchers.addToCart}
-                  cart={this.props.cart.cart}
-                  products={this.props.products.products}
-                  productDetail={this.props.dispatchers.productDetail}
-                  disabled={product.disabled}
-                  disableButton={this.props.dispatchers.disableButton}
-                />
-              ))}
-            </div>
+            ) : (
+              <Helper
+                products={this.props.categories.productsByCategory}
+                addToCartDispatcher={this.props.dispatchers.addToCart}
+                productDetailDispatcher={this.props.dispatchers.productDetail}
+                disableButtonDispatcher={this.props.dispatchers.disableButton}
+                cart={this.props.cart.cart}
+              />
+            )
+          ) : this.props.products.searchValue ? (
+            <Search
+              searchValue={this.props.products.searchValue}
+              products={this.props.products.products}
+              addToCartDispatcher={this.props.dispatchers.addToCart}
+              productDetailDispatcher={this.props.dispatchers.productDetail}
+              disableButtonDispatcher={this.props.dispatchers.disableButton}
+              cart={this.props.cart.cart}
+            />
           ) : (
-            <div className="row">
-              {this.props.products.products.map(product => (
-                <Product
-                  img={product.imageUrl}
-                  name={product.name}
-                  shortdesc={product.shortDescription}
-                  rating={product.ratings.avgRating}
-                  totalReviews={product.ratings.totalReviews}
-                  key={product.id}
-                  id={product.id}
-                  addToCart={this.props.dispatchers.addToCart}
-                  cart={this.props.cart.cart}
-                  products={this.props.products.products}
-                  productDetail={this.props.dispatchers.productDetail}
-                  disabled={product.disabled}
-                  disableButton={this.props.dispatchers.disableButton}
-                />
-              ))}
-            </div>
+            <Helper
+              products={this.props.products.products}
+              addToCartDispatcher={this.props.dispatchers.addToCart}
+              productDetailDispatcher={this.props.dispatchers.productDetail}
+              disableButtonDispatcher={this.props.dispatchers.disableButton}
+              cart={this.props.cart.cart}
+            />
           )
         ) : (
           <Spinner style={{ width: "3rem", height: "3rem" }} />
