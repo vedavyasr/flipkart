@@ -18,7 +18,6 @@ let ProductCard = props => (
       onClick={() => {
         props.productDetail(props.id);
         props.history.push(`${"/products/:" + props.id}`);
-        
       }}
       style={{ cursor: "pointer" }}
     >
@@ -31,7 +30,10 @@ let ProductCard = props => (
           <Button
             className="buyNowBtn"
             onClick={e => {
+              console.log(props, "in bynwo");
               e.stopPropagation();
+
+              props.disableButton(props.id);
               props.history.push("/checkout");
             }}
           >
@@ -40,7 +42,6 @@ let ProductCard = props => (
           <AddToCartButton
             className="cartBtn"
             disableButton={props.disableButton}
-            addToCart={props.addToCart}
             disabled={props.disabled}
             id={props.id}
           />
