@@ -9,7 +9,6 @@ class Header extends PureComponent {
     window.sessionStorage.clear();
   }
   render() {
-    console.log(this.props, "in compoie");
     return (
       <div>
         <Nav tabs>
@@ -27,7 +26,7 @@ class Header extends PureComponent {
             </Nav>
           ) : (
             <Nav className="registerBtn">
-              <h2>Welcome User!</h2>
+              <p style={{ color: "white" }}>Welcome User!</p>
               <NavItem>
                 <NavLink
                   style={{ cursor: "pointer" }}

@@ -7,10 +7,14 @@ let values = {};
 function handleChangeEvent(event) {
   values[event.target.name] = event.target.value;
 }
-
+let inputBoxDetails = [
+  { label: "Name", type: "text", name: "name" },
+  { label: "Address", type: "text", name: "address" },
+  { label: "City", type: "text", name: "city" },
+  { label: "State", type: "text", name: "state" },
+  { label: "Pincode", type: "number", name: "pincode" }
+];
 let Shipping = props => {
-  console.log(props, " ins hipping");
-
   return (
     <div className="ShippingForm">
       <h4>Shipping Details</h4>
@@ -20,48 +24,20 @@ let Shipping = props => {
           props.history.push("/ordersummary");
         }}
       >
-        <InputBox
-          label="Name"
-          type="text"
-          name="name"
-          changeHandle={handleChangeEvent}
-          required
-        />
-        <InputBox
-          label="Address"
-          type="text"
-          name="address"
-          changeHandle={handleChangeEvent}
-          required
-        />
-        <InputBox
-          label="City"
-          type="text"
-          name="city"
-          changeHandle={handleChangeEvent}
-          required
-        />
-        <InputBox
-          label="State"
-          type="text"
-          name="state"
-          changeHandle={handleChangeEvent}
-          required
-        />
-        <InputBox
-          label="Pincode"
-          type="number"
-          name="pincode"
-          changeHandle={handleChangeEvent}
-          required
-        />
+        {inputBoxDetails.map(detail => (
+          <InputBox
+            key={detail.name}
+            label={detail.label}
+            type={detail.type}
+            name={detail.name}
+            changeHandle={handleChangeEvent}
+          />
+        ))}
 
         <Button>Place order</Button>
       </Form>
     </div>
   );
 };
-
-
 
 export default withRouter(Shipping);
