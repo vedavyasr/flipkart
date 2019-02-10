@@ -3,16 +3,11 @@ import Product from "./ProductCard";
 
 let Helper = props => {
   return (
-   <div className="row">
+    <div className="row">
       {props.products.map(product => (
         <Product
-          img={product.imageUrl}
-          name={product.name}
-          shortdesc={product.shortDescription}
-          rating={product.ratings.avgRating}
-          totalReviews={product.ratings.totalReviews}
           key={product.id}
-          id={product.id}
+          product={product}
           addToCart={props.addToCartDispatcher}
           cart={props.cart.cart}
           products={props.products.products}

@@ -29,7 +29,6 @@ const LazyLoadableCategories = Loadable({
 
 class App extends Component {
   render() {
-    console.log(this.props, "sdfjal");
     return (
       <div className="container">
         <div className="mainContainer">

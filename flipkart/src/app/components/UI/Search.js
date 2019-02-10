@@ -1,12 +1,10 @@
 import React from "react";
 import Product from "./ProductCard";
-
+import proptypes from "prop-types";
 let Search = props => {
-  console.log(props, "search...");
   let searchResults = props.products.filter(value =>
     value.name.toLowerCase().includes(props.searchValue.toLowerCase())
   );
-  console.log(searchResults, "in searchRresults");
   return (
     <div>
       <h2>Search results</h2>
@@ -14,13 +12,8 @@ let Search = props => {
       {searchResults.length ? (
         searchResults.map(product => (
           <Product
-            img={product.imageUrl}
-            name={product.name}
-            shortdesc={product.shortDescription}
-            rating={product.ratings.avgRating}
-            totalReviews={product.ratings.totalReviews}
             key={product.id}
-            id={product.id}
+            product={product}
             addToCart={props.addToCartDispatcher}
             cart={props.cart.cart}
             products={props.products.products}
@@ -35,5 +28,9 @@ let Search = props => {
     </div>
   );
 };
+
+// StarRating.propTypes = {
+//   rating: proptypes.number.isRequired
+// };
 
 export default Search;

@@ -1,10 +1,12 @@
 import React from "react";
-import { FormGroup, Label, Input } from "reactstrap";
+import { FormGroup, Label } from "reactstrap";
 
 export default props => (
   <FormGroup>
     <Label>{props.label}:</Label>
-    <Input
+    <input
+      className="form-control"
+      required
       type={props.type}
       name={props.name}
       onChange={event => {

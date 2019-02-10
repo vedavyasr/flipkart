@@ -16,24 +16,23 @@ let ProductCard = props => (
   <div className="col-sm-6 col-md-4 col-lg-3">
     <Card
       onClick={() => {
-        props.productDetail(props.id);
-        props.history.push(`${"/products/:" + props.id}`);
+        props.productDetail(props.product.id);
+        props.history.push(`${"/products/:" + props.product.id}`);
       }}
       style={{ cursor: "pointer" }}
     >
-      <CardImg src={props.img} alt={props.name} />
+      <CardImg src={props.product.imageUrl} alt={props.product.name} />
       <CardBody>
-        <CardTitle>{props.name}</CardTitle>
-        <StarRatingComponent rating={props.rating} />
-        <CardText>{props.shortdesc}</CardText>
+        <CardTitle>{props.product.name}</CardTitle>
+        <StarRatingComponent rating={props.product.ratings.avgRating} />
+        <CardText>{props.product.shortdesc}</CardText>
         <ButtonGroup>
           <Button
             className="buyNowBtn"
+            // disabled={props.product.disabled}
             onClick={e => {
-              console.log(props, "in bynwo");
               e.stopPropagation();
-
-              props.disableButton(props.id);
+              props.disableButton(props.product.id);
               props.history.push("/checkout");
             }}
           >
@@ -42,8 +41,8 @@ let ProductCard = props => (
           <AddToCartButton
             className="cartBtn"
             disableButton={props.disableButton}
-            disabled={props.disabled}
-            id={props.id}
+            disabled={props.product.disabled}
+            id={props.product.id}
           />
         </ButtonGroup>
       </CardBody>

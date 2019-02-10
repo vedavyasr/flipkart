@@ -14,7 +14,7 @@ class Products extends PureComponent {
   }
 
   render() {
-    return (
+    const Heading = (
       <div>
         <h2>Products</h2>
         <hr />
@@ -24,46 +24,35 @@ class Products extends PureComponent {
           onChange={e => this.props.dispatchers.searchValue(e.target.value)}
         />
         <hr />
-        {!this.props.products.isFetching ? (
-          this.props.categories.productsByCategory.length ? (
-            this.props.products.searchValue ? (
-              <Search
-                searchValue={this.props.products.searchValue}
-                products={this.props.categories.productsByCategory}
-                addToCartDispatcher={this.props.dispatchers.addToCart}
-                productDetailDispatcher={this.props.dispatchers.productDetail}
-                disableButtonDispatcher={this.props.dispatchers.disableButton}
-                cart={this.props.cart.cart}
-              />
-            ) : (
-              <Helper
-                products={this.props.categories.productsByCategory}
-                addToCartDispatcher={this.props.dispatchers.addToCart}
-                productDetailDispatcher={this.props.dispatchers.productDetail}
-                disableButtonDispatcher={this.props.dispatchers.disableButton}
-                cart={this.props.cart.cart}
-              />
-            )
-          ) : this.props.products.searchValue ? (
-            <Search
-              searchValue={this.props.products.searchValue}
-              products={this.props.products.products}
-              addToCartDispatcher={this.props.dispatchers.addToCart}
-              productDetailDispatcher={this.props.dispatchers.productDetail}
-              disableButtonDispatcher={this.props.dispatchers.disableButton}
-              cart={this.props.cart.cart}
-            />
-          ) : (
-            <Helper
-              products={this.props.products.products}
-              addToCartDispatcher={this.props.dispatchers.addToCart}
-              productDetailDispatcher={this.props.dispatchers.productDetail}
-              disableButtonDispatcher={this.props.dispatchers.disableButton}
-              cart={this.props.cart.cart}
-            />
-          )
-        ) : (
+      </div>
+    );
+
+    if (this.props.products.isFetching) {
+      return (
+        <React.Fragment>
+          {Heading}
           <Spinner style={{ width: "3rem", height: "3rem" }} />
+        </React.Fragment>
+      );
+    }
+
+    const showProducts = this.props.categories.productsByCategory.length
+      ? this.props.categories.productsByCategory
+      : this.props.products.products;
+
+    const { products, ...rest } = this.props;
+
+    return (
+      <div>
+        {Heading}
+        {products.searchValue ? (
+          <Search
+            searchValue={products.searchValue}
+            products={showProducts}
+            {...rest}
+          />
+        ) : (
+          <Helper products={showProducts} {...rest} />
         )}
       </div>
     );

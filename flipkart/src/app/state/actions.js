@@ -129,18 +129,28 @@ export const disableCartButton = updatedProducts => ({
 
 export const disableButton = productId => (dispatch, getState) => {
   let products = getState().products.products;
-  const productIndex = products.findIndex(obj => obj.id === productId);
-  const updatedProduct = {
-    ...products[productIndex],
-    disabled: true
-  };
-  const UpdatedProducts = [
-    ...products.slice(0, productIndex),
-    updatedProduct,
-    ...products.slice(productIndex + 1)
-  ];
-  dispatch(addToCart(productId));
-  dispatch(disableCartButton(UpdatedProducts));
+  let cart = getState().cart.cart;
+  let result = cart.findIndex(obj => {
+    return obj.id === productId;
+  });
+  console.log(result);
+
+  if (result > -1) {
+    console.log("already in cart");
+  } else {
+    const productIndex = products.findIndex(obj => obj.id === productId);
+    const updatedProduct = {
+      ...products[productIndex],
+      disabled: true
+    };
+    const UpdatedProducts = [
+      ...products.slice(0, productIndex),
+      updatedProduct,
+      ...products.slice(productIndex + 1)
+    ];
+    dispatch(addToCart(productId));
+    dispatch(disableCartButton(UpdatedProducts));
+  }
 };
 
 export const enableButton = productId => (dispatch, getState) => {
