@@ -14,6 +14,8 @@ class Products extends PureComponent {
   }
 
   render() {
+    // const { products, ...rest } = this.props;
+    console.log(this.props, "in rest");
     const Heading = (
       <div>
         <h2>Products</h2>

@@ -8,12 +8,12 @@ let Helper = props => {
         <Product
           key={product.id}
           product={product}
-          addToCart={props.addToCartDispatcher}
+          addToCart={props.dispatchers.addToCart}
           cart={props.cart.cart}
           products={props.products.products}
-          productDetail={props.productDetailDispatcher}
+          productDetail={props.dispatchers.productDetail}
           disabled={product.disabled}
-          disableButton={props.disableButtonDispatcher}
+          disableButton={props.dispatchers.disableButton}
         />
       ))}
     </div>

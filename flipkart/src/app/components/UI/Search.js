@@ -2,9 +2,10 @@ import React from "react";
 import Product from "./ProductCard";
 import proptypes from "prop-types";
 let Search = props => {
-  let searchResults = props.products.filter(value =>
-    value.name.toLowerCase().includes(props.searchValue.toLowerCase())
-  );
+  let searchResults = props.products.filter(value => {
+    console.log(props, "srata");
+    return value.name.toLowerCase().includes(props.searchValue.toLowerCase());
+  });
   return (
     <div>
       <h2>Search results</h2>
@@ -14,12 +15,12 @@ let Search = props => {
           <Product
             key={product.id}
             product={product}
-            addToCart={props.addToCartDispatcher}
+            addToCart={props.dispatchers.addToCart}
             cart={props.cart.cart}
             products={props.products.products}
-            productDetail={props.productDetailDispatcher}
+            productDetail={props.dispatchers.productDetail}
             disabled={product.disabled}
-            disableButton={props.disableButtonDispatcher}
+            disableButton={props.dispatchers.disableButton}
           />
         ))
       ) : (
