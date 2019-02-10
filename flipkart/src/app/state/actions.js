@@ -283,3 +283,7 @@ export function saveSummary(data) {
       });
   };
 }
+
+export const clearSearchValue = () => ({
+  type: actions.CLEAR_SEARCH_VALUE
+});

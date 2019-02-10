@@ -4,12 +4,15 @@ import { Spinner } from "reactstrap";
 import Helper from "./UI/ProductCardHelper";
 class Home extends PureComponent {
   componentWillMount() {
+    this.props.dispatchers.clearSearchValue();
     if (this.props.productsByCategory.length)
       this.props.dispatchers.resetCategoryProducts();
 
     !this.props.products.length && this.props.dispatchers.fetchProducts();
   }
   render() {
+    console.log(this.props, "'in spidfsa");
+
     return (
       <div className="homePage">
         <Carousel />
@@ -20,10 +23,8 @@ class Home extends PureComponent {
           {!this.props.products.isFetching ? (
             <Helper
               products={this.props.topSellingProducts}
-              addToCartDispatcher={this.props.dispatchers.addToCart}
-              productDetailDispatcher={this.props.dispatchers.productDetail}
-              disableButtonDispatcher={this.props.dispatchers.disableButton}
-              cart={this.props.cart}
+              dispatchers={this.props.dispatchers}
+              cart={this.props}
             />
           ) : (
             <Spinner style={{ width: "3rem", height: "3rem" }} />

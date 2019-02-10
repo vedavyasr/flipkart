@@ -40,6 +40,11 @@ export default function productReducer(state = INITIAL_STATE, action) {
         ...state,
         products: action.payload
       };
+    case actions.CLEAR_SEARCH_VALUE:
+      return {
+        ...state,
+        searchValue: ""
+      };
     default:
       return state;
   }

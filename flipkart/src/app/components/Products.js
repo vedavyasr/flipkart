@@ -7,6 +7,7 @@ import Search from "./UI/Search";
 import Helper from "./UI/ProductCardHelper";
 class Products extends PureComponent {
   componentWillMount() {
+    this.props.dispatchers.clearSearchValue();
     !(
       this.props.categories.productsByCategory.length ||
       this.props.products.products.length

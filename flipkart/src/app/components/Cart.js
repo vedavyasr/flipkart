@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 
 class Cart extends PureComponent {
   componentWillMount() {
+    this.props.dispatchers.clearSearchValue();
     if (this.props.categoryProducts.length) {
       this.props.dispatchers.resetCategoryProducts();
     }
