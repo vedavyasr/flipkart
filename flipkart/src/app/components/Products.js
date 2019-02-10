@@ -7,6 +7,7 @@ import Search from "./UI/Search";
 import Helper from "./UI/ProductCardHelper";
 class Products extends PureComponent {
   componentWillMount() {
+    this.props.dispatchers.clearSearchValue();
     !(
       this.props.categories.productsByCategory.length ||
       this.props.products.products.length
@@ -14,8 +15,6 @@ class Products extends PureComponent {
   }
 
   render() {
-    // const { products, ...rest } = this.props;
-    console.log(this.props, "in rest");
     const Heading = (
       <div>
         <h2>Products</h2>
