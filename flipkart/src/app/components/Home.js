@@ -4,7 +4,7 @@ import { Spinner } from "reactstrap";
 import Helper from "./UI/ProductCardHelper";
 class Home extends PureComponent {
   componentWillMount() {
-    this.props.dispatchers.clearSearchValue();
+    // this.props.dispatchers.clearSearchValue();
     if (this.props.productsByCategory.length)
       this.props.dispatchers.resetCategoryProducts();
 

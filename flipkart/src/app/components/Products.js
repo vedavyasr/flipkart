@@ -5,13 +5,17 @@ import { bindActionCreators } from "redux";
 import { Spinner } from "reactstrap";
 import Search from "./UI/Search";
 import Helper from "./UI/ProductCardHelper";
+import proptypes from "prop-types";
 class Products extends PureComponent {
   componentWillMount() {
-    this.props.dispatchers.clearSearchValue();
+    // this.props.dispatchers.clearSearchValue();
     !(
       this.props.categories.productsByCategory.length ||
       this.props.products.products.length
     ) && this.props.dispatchers.fetchProducts();
+  }
+  componentWillUnmount(){
+    this.props.dispatchers.clearSearchValue();
   }
 
   render() {
@@ -60,6 +64,8 @@ class Products extends PureComponent {
   }
 }
 
+
+
 let mapStateToProps = state => {
   return {
     products: state.products,
@@ -72,6 +78,13 @@ let mapDisptachToProps = (dispatch, getState) => {
   return {
     dispatchers: bindActionCreators(actions, dispatch)
   };
+};
+
+Products.proptypes = {
+  products: proptypes.array.isRequired,
+  cart: proptypes.array.isRequired,
+  categories: proptypes.array.categories
+
 };
 
 export default connect(

@@ -2,9 +2,10 @@ import React from "react";
 import StarRating from "./UI/StarRating";
 import AddToCartButton from "./UI/AddToCartButton";
 import { Link } from "react-router-dom";
+import proptypes from "prop-types";
 let Productdetails = props => {
   let { productDetail } = props;
-  console.log(props, " in prd");
+
   return props.productDetail.length ? (
     <div className="productDetail">
       <div className="float-left">
@@ -28,6 +29,10 @@ let Productdetails = props => {
   ) : (
     <Link to="/products">GOBACK TO PRODUCT LISTING...</Link>
   );
+};
+
+Productdetails.proptypes = {
+  productDetail: proptypes.array.isRequired
 };
 
 export default Productdetails;
