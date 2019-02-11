@@ -13,7 +13,7 @@ import ProductDetails from "./app/containers/ProductDetailsContainer";
 import OrderSummary from "./app/components/OrderSummary";
 import Loadable from "react-loadable";
 import { Spinner } from "reactstrap";
-import Error from "./app/components/UI/Counter";
+import Error from "./app/components/UI/Error";
 import AuthRoute from "./app/components/UI/AuthRoute";
 const Loading = () => (
   <div>

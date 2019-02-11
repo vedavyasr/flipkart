@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { withRouter } from "react-router-dom";
-
+import proptypes from "prop-types";
 let Categorycard = props => {
   return (
     <div className="col-sm-6 col-md-4 col-lg-3">
@@ -22,6 +22,12 @@ let Categorycard = props => {
       </Card>
     </div>
   );
+};
+
+Categorycard.proptypes = {
+  img: proptypes.string.isRequired,
+  name: proptypes.string.isRequired,
+  id: proptypes.number.isRequired
 };
 
 export default withRouter(Categorycard);

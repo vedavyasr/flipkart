@@ -3,7 +3,6 @@ import Product from "./ProductCard";
 import proptypes from "prop-types";
 let Search = props => {
   let searchResults = props.products.filter(value => {
-    console.log(props, "srata");
     return value.name.toLowerCase().includes(props.searchValue.toLowerCase());
   });
   return (
@@ -24,14 +23,15 @@ let Search = props => {
           />
         ))
       ) : (
-        <h2>OOPsyyyyyyy....!! No Products Found.... </h2>
+        <h2>OOPS....!! No Products Found.... </h2>
       )}
     </div>
   );
 };
 
-// StarRating.propTypes = {
-//   rating: proptypes.number.isRequired
-// };
+Search.proptypes = {
+  products: proptypes.array.isRequired,
+  searchValue: proptypes.string.isRequired
+};
 
 export default Search;

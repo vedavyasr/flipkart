@@ -11,7 +11,7 @@ import {
   ButtonGroup
 } from "reactstrap";
 import AddToCartButton from "./AddToCartButton";
-
+import proptypes from "prop-types";
 let ProductCard = props => (
   <div className="col-sm-6 col-md-4 col-lg-3">
     <Card
@@ -49,5 +49,9 @@ let ProductCard = props => (
     </Card>
   </div>
 );
+
+ProductCard.proptypes = {
+  product: proptypes.object.isRequired
+};
 
 export default withRouter(ProductCard);

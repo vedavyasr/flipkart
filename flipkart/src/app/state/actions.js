@@ -189,7 +189,7 @@ export const login = token => ({
 });
 
 export const loginAPI = (username, password) => (dispatch, getState) => {
-  console.log(username, password);
+  
   axios
     .post("https://reqres.in/api/login", { username, password })
     .then(response => {

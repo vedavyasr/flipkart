@@ -1,6 +1,6 @@
 import React from "react";
 import Product from "./ProductCard";
-
+import proptypes from "prop-types";
 let Helper = props => {
   console.log(props, "in heper");
   return (
@@ -19,6 +19,11 @@ let Helper = props => {
       ))}
     </div>
   );
+};
+
+Helper.proptypes = {
+  products: proptypes.array.isRequired,
+  dispatchers: proptypes.func.isRequired
 };
 
 export default Helper;
