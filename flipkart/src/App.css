@@ -63,7 +63,8 @@ footer {
 }
 .Shipping {
   float: left;
-  width: 49%;
+  width: 45%;
+  margin-left: 5%;
 }
 .nav-tabs {
   background: #5b5b5b;
@@ -111,4 +112,9 @@ img.h200 {
 }
 .productPrice {
   margin: 15px 0 20px 0;
+}
+.userlogged {color: #fff; margin: 9px 0 0 0;}
+.card .btn-group .btn-secondary {font-size: 0.9rem;}
+.checkoutpage .table-responsive>.table-bordered {
+  margin: auto;
 }

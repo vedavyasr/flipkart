@@ -4,6 +4,7 @@ import Link from "./UI/NavLink";
 import { connect } from "react-redux";
 import * as actions from "../state/actions";
 import { bindActionCreators } from "redux";
+import {withRouter} from 'react-router-dom'
 class Header extends PureComponent {
   componentWillMount() {
     window.sessionStorage.clear();
@@ -25,16 +26,17 @@ class Header extends PureComponent {
               <Link url="/login" title="Login" login={this.props.loggedIn} />
             </Nav>
           ) : (
-            <Nav className="registerBtn">
-              <p style={{ color: "white" }}>Welcome User!</p>
+            <Nav className="ml-auto nav">
+              <p className="userlogged">Welcome User!</p>
               <NavItem>
                 <NavLink
                   style={{ cursor: "pointer" }}
                   onClick={() => {
+                    this.props.history.push('/')
                     this.props.dispatchers.logout();
                   }}
                 >
-                  Logout!
+                  Logout
                 </NavLink>
               </NavItem>
             </Nav>
@@ -57,4 +59,4 @@ let mapDisptachToProps = (dispatch, getState) => {
 export default connect(
   mapStateToProps,
   mapDisptachToProps
-)(Header);
+)(withRouter(Header));

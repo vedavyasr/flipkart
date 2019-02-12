@@ -6,6 +6,7 @@ import proptypes from "prop-types";
 let Productdetails = props => {
   let { productDetail } = props;
 
+  
   return props.productDetail.length ? (
     <div className="productDetail">
       <div className="float-left">

@@ -14,14 +14,13 @@ class Products extends PureComponent {
       this.props.products.products.length
     ) && this.props.dispatchers.fetchProducts();
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.dispatchers.clearSearchValue();
   }
 
   render() {
     const Heading = (
       <div>
-        <h2>Products</h2>
         <hr />
         <h3>Filter:</h3>
         <input
@@ -50,6 +49,12 @@ class Products extends PureComponent {
     return (
       <div>
         {Heading}
+
+        {this.props.categories.productsByCategory.length ? (
+          <h2>Products By Category</h2>
+        ) : (
+          <h2>Products</h2>
+        )}
         {products.searchValue ? (
           <Search
             searchValue={products.searchValue}
@@ -63,8 +68,6 @@ class Products extends PureComponent {
     );
   }
 }
-
-
 
 let mapStateToProps = state => {
   return {
@@ -84,7 +87,6 @@ Products.proptypes = {
   products: proptypes.array.isRequired,
   cart: proptypes.array.isRequired,
   categories: proptypes.array.categories
-
 };
 
 export default connect(

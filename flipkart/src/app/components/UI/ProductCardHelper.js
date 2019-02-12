@@ -2,7 +2,6 @@ import React from "react";
 import Product from "./ProductCard";
 import proptypes from "prop-types";
 let Helper = props => {
-  console.log(props, "in heper");
   return (
     <div className="row">
       {props.products.map(product => (

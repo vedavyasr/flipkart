@@ -25,7 +25,7 @@ let ProductCard = props => (
       <CardBody>
         <CardTitle>{props.product.name}</CardTitle>
         <StarRatingComponent rating={props.product.ratings.avgRating} />
-        <CardText>{props.product.shortdesc}</CardText>
+        <CardText>{props.product.shortDescription}</CardText>
         <ButtonGroup>
           <Button
             className="buyNowBtn"

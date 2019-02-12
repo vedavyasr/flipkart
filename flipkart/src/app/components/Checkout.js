@@ -3,7 +3,7 @@ import Shipping from "../containers/ShippingContainer";
 import Cart from "./Cart";
 import {Card} from 'reactstrap'
 export default () => (
-  <div>
+  <div className="checkoutpage">
     <hr />
     <h1 className="text-center">Checkout</h1>
     <hr />
@@ -11,8 +11,8 @@ export default () => (
       <Cart display="none" />
     </Card>
     
-    <Card className="Shipping">
+    <div className="Shipping">
       <Shipping />
-    </Card>
+    </div>
   </div>
 );

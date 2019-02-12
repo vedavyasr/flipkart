@@ -44,7 +44,9 @@ class Cart extends PureComponent {
                         >
                           -1
                         </Button>
+
                         {product.qty}
+
                         <Button
                           onClick={() =>
                             this.props.dispatchers.increaseQty(product.id)
@@ -86,7 +88,7 @@ class Cart extends PureComponent {
                 </tr>
               </tbody>
             </table>
-
+            <br />
             <Button
               onClick={() => {
                 this.props.dispatchers.cartTotal(total);
@@ -94,7 +96,7 @@ class Cart extends PureComponent {
               }}
               style={{ display: this.props.display }}
             >
-              Checkout==>>
+              Checkout
             </Button>
           </div>
         )}
