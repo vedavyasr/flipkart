@@ -1,3 +1,4 @@
+//Vinosh & Vinothini
 import React from "react";
 import {Redirect} from 'react-router-dom';
 import InputBox from "./UI/InputBox";
@@ -8,7 +9,7 @@ function handleChangeEvent(event) {
 }
 
 export default props => {
-  console.log(props,'props')
+  
   if(props.logged){
     return <Redirect to="/"/>
   }

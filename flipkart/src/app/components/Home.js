@@ -1,3 +1,4 @@
+//Vedavyas
 import React, { PureComponent } from "react";
 import Carousel from "./UI/Carousel";
 import { Spinner } from "reactstrap";
