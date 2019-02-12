@@ -2,6 +2,7 @@ import React from "react";
 import Product from "./ProductCard";
 import proptypes from "prop-types";
 let Search = props => {
+  console.log('props in serarch',props)
   let searchResults = props.products.filter(value => {
     return value.name.toLowerCase().includes(props.searchValue.toLowerCase());
   });

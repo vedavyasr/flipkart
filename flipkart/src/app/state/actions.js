@@ -44,7 +44,7 @@ export function fetchProducts() {
       url: URL.GRAPHQL,
       method: "post",
       data: {
-        query: `query  Products{
+        query: `{
           allProducts {
             id
             name
