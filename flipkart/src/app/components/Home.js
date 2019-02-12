@@ -11,8 +11,7 @@ class Home extends PureComponent {
     !this.props.products.length && this.props.dispatchers.fetchProducts();
   }
   render() {
-    console.log(this.props, "'in spidfsa");
-
+    
     return (
       <div className="homePage">
         <Carousel />

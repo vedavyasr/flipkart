@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-boost": "^0.1.27",
+    "apollo-cache-inmemory": "^1.4.2",
+    "apollo-link-http": "^1.5.11",
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
+    "react-apollo": "^2.4.1",
     "react-dom": "^16.7.0",
     "react-loadable": "^5.5.0",
     "react-redux": "^6.0.0",
@@ -16,12 +22,14 @@
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "react-scripts test",
+    "test:watch": "npm test -- --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -32,5 +40,11 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "jest": "^23.6.0"
+  }
 }

@@ -1,5 +1,6 @@
 import * as actions from "./action-types";
 import axios from "axios";
+import URL from "../api";
 
 export const fetchingData = () => ({
   type: actions.FETCHING_PRODUCTS_INIT
@@ -15,19 +16,55 @@ export const fetchingDataError = err => ({
   payload: err
 });
 
+// export function fetchProducts() {
+//   return function apiCall(dispatch, getState) {
+//     dispatch(fetchingData);
+//     let config = {
+//       "Access-Control-Allow-Origin": "*",
+//       "Content-type": "application/json"
+//     };
+//     axios
+//       .get("https://reactprojectdbserver.azurewebsites.net/products", config)
+//       .then(response => {
+//         response.data.map(res => (res.disabled = false));
+
+//         dispatch(fetchingDataSuccess(response.data));
+//       })
+//       .catch(err => {
+//         console.log(err);
+//         dispatch(fetchingDataError(err));
+//       });
+//   };
+// }
+
 export function fetchProducts() {
   return function apiCall(dispatch, getState) {
     dispatch(fetchingData);
-    let config = {
-      "Access-Control-Allow-Origin": "*",
-      "Content-type": "application/json"
-    };
-    axios
-      .get("http://reactprojectdbserver.azurewebsites.net/products", config)
-      .then(response => {
-        response.data.map(res => (res.disabled = false));
+    axios({
+      url: URL.GRAPHQL,
+      method: "post",
+      data: {
+        query: `query  Products{
+          allProducts {
+            id
+            name
+            categoryId
+            ratings
+            shortDescription
+            longDescription
+            price
+            views
+            ratings
+            imageUrl  
+          }
+          }`
+      }
+    })
+      .then(result => {
+        console.log(result.data.data.allProducts);
+        result.data.data.allProducts.map(res => (res.disabled = false));
 
-        dispatch(fetchingDataSuccess(response.data));
+        dispatch(fetchingDataSuccess(result.data.data.allProducts));
       })
       .catch(err => {
         console.log(err);
@@ -58,7 +95,7 @@ export function fetchCategories() {
       "Content-type": "application/json"
     };
     axios
-      .get("http://reactprojectdbserver.azurewebsites.net/categories", config)
+      .get(URL.CATEGORY_URL, config)
       .then(response => {
         console.log(response, "response");
         dispatch(fetchingCategoriesSuccess(response.data));
@@ -100,6 +137,7 @@ export const addToCart = productid => (dispatch, getState) => {
   let products = getState().products.products;
   let cartItem = products.filter(({ id }) => id === productid);
   cartItem[0].qty = 1;
+
   dispatch({
     type: actions.ADD_TO_CART,
     payload: cartItem[0]
@@ -160,6 +198,7 @@ export const enableButton = productId => (dispatch, getState) => {
     ...products[productIndex],
     disabled: false
   };
+
   const UpdatedProducts = [
     ...products.slice(0, productIndex),
     updatedProduct,
@@ -189,9 +228,8 @@ export const login = token => ({
 });
 
 export const loginAPI = (username, password) => (dispatch, getState) => {
-  
   axios
-    .post("https://reqres.in/api/login", { username, password })
+    .post(URL.LOGIN_URL, { username, password })
     .then(response => {
       window.localStorage.setItem("logged", response.data.token);
       dispatch(login(response.data.token));
@@ -219,7 +257,9 @@ export const increaseQty = productId => (dispatch, getState) => {
     ...cart.slice(cartIndex + 1)
   ];
   let cartItems = [];
+
   cart.map(item => cartItems.push({ id: item.id, qty: item.qty }));
+
   dispatch({
     type: actions.INCREASE_QTY,
     payload: { UpdatedCart, cartItems }
@@ -269,7 +309,7 @@ export function saveSummary(data) {
 
     dispatch({ type: actions.SAVE_SUMMARY_INIT });
     axios
-      .post("http://reactprojectdbserver.azurewebsites.net/orders", values)
+      .post(URL.ORDERS_URL, values)
       .then(response => {
         console.log(response);
         dispatch({

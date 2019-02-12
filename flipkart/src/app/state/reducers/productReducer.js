@@ -1,7 +1,7 @@
 import * as actions from "../action-types";
 
 const INITIAL_STATE = {
-  isFetching: Boolean,
+  isFetching: false,
   products: [],
   error: {},
   searchValue: "",
@@ -17,7 +17,7 @@ export default function productReducer(state = INITIAL_STATE, action) {
     case actions.FETCHING_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload, 
         productsToDisplay: action.payload,
         isFetching: false
       };

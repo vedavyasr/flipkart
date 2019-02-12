@@ -15,6 +15,7 @@ import Loadable from "react-loadable";
 import { Spinner } from "reactstrap";
 import Error from "./app/components/UI/Error";
 import AuthRoute from "./app/components/UI/AuthRoute";
+
 const Loading = () => (
   <div>
     <Spinner style={{ width: "3rem", height: "3rem" }} />
