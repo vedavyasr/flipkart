@@ -87,7 +87,7 @@ export function fetchProducts() {
 // export const fetchingCategories = () => ({
 //   type: actions.FETCHING_CATEGORIES_INIT
 // });
-export function fetchCategories(){
+export function fetchingCategories(){
   return{
     type: actions.FETCHING_CATEGORIES_INIT
   }
@@ -109,6 +109,7 @@ export const fetchingCategoriesError = err => ({
   type: actions.FETCHING_CATEGORIES_ERROR,
   payload: err
 });
+
 
 export function fetchCategories() {
   return function apiCall(dispatch, getState) {
