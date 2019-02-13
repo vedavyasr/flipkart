@@ -14,6 +14,7 @@ export default class Categories extends PureComponent {
     }
   }
   render() {
+    console.log(this.props,"props...")
     return (
       <div>
         <img
