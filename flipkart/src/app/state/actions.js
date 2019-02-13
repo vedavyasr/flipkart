@@ -2,19 +2,30 @@ import * as actions from "./action-types";
 import axios from "axios";
 import URL from "../api";
 
-export const fetchingData = () => ({
-  type: actions.FETCHING_PRODUCTS_INIT
-});
+// export const fetchingData = () => ({
+//   type: actions.FETCHING_PRODUCTS_INIT
+// });
+export function fetchingData() {
+  return {
+    type: actions.FETCHING_PRODUCTS_INIT
+  };
+}
 
-export const fetchingDataSuccess = data => ({
-  type: actions.FETCHING_PRODUCTS_SUCCESS,
-  payload: data
-});
+// export const fetchingDataSuccess = data => ({
+//   type: actions.FETCHING_PRODUCTS_SUCCESS,
+//   payload: data
+// });
+export function fetchingDataSuccess(data) {
+  return { type: actions.FETCHING_PRODUCTS_SUCCESS, payload: data };
+}
 
-export const fetchingDataError = err => ({
-  type: actions.FETCHING_PRODUCTS_ERROR,
-  payload: err
-});
+// export const fetchingDataError = err => ({
+//   type: actions.FETCHING_PRODUCTS_ERROR,
+//   payload: err
+// });
+export function fetchingDataError(err) {
+  return { type: actions.FETCHING_PRODUCTS_ERROR, payload: err };
+}
 
 // export function fetchProducts() {
 //   return function apiCall(dispatch, getState) {
@@ -73,14 +84,26 @@ export function fetchProducts() {
   };
 }
 
-export const fetchingCategories = () => ({
-  type: actions.FETCHING_CATEGORIES_INIT
-});
+// export const fetchingCategories = () => ({
+//   type: actions.FETCHING_CATEGORIES_INIT
+// });
+export function fetchCategories(){
+  return{
+    type: actions.FETCHING_CATEGORIES_INIT
+  }
+}
 
-export const fetchingCategoriesSuccess = value => ({
-  type: actions.FETCHING_CATEGORIES_SUCCESS,
-  payload: value
-});
+// export const fetchingCategoriesSuccess = value => ({
+//   type: actions.FETCHING_CATEGORIES_SUCCESS,
+//   payload: value
+// });
+
+export function fetchingCategoriesSuccess(value){
+  return{
+    type: actions.FETCHING_CATEGORIES_SUCCESS,
+      payload: value
+  }
+}
 
 export const fetchingCategoriesError = err => ({
   type: actions.FETCHING_CATEGORIES_ERROR,
@@ -107,17 +130,31 @@ export function fetchCategories() {
   };
 }
 
-export const saveCategoryId = id => dispatch => {
-  dispatch({
+// export const saveCategoryId = id => dispatch => {
+//   dispatch({
+//     type: actions.SAVE_CATEGORY_ID,
+//     payload: id
+//   });
+// };
+
+export function saveCategoryId(id) {
+  return {
     type: actions.SAVE_CATEGORY_ID,
     payload: id
-  });
-};
+  };
+}
 
-export const filterProducts = products => ({
-  type: actions.FILTER_BY_CATEGORY,
-  payload: products
-});
+// export const filterProducts = products => ({
+//   type: actions.FILTER_BY_CATEGORY,
+//   payload: products
+// });
+
+export function filterProducts(products) {
+  return {
+    type: actions.FILTER_BY_CATEGORY,
+    payload: products
+  };
+}
 
 export function filterByCategory() {
   return function filteringProducts(dispatch, getState) {
@@ -128,10 +165,16 @@ export function filterByCategory() {
   };
 }
 
-export const deleteProduct = id => ({
-  type: actions.DELETE_CART_ITEM,
-  payload: id
-});
+// export const deleteProduct = id => ({
+//   type: actions.DELETE_CART_ITEM,
+//   payload: id
+// });
+export function deleteProduct(id) {
+  return {
+    type: actions.DELETE_CART_ITEM,
+    payload: id
+  };
+}
 
 export const addToCart = productid => (dispatch, getState) => {
   let products = getState().products.products;
@@ -144,12 +187,19 @@ export const addToCart = productid => (dispatch, getState) => {
   });
 };
 
-export const searchValue = value => dispatch => {
-  dispatch({
+// export const searchValue = value => dispatch => {
+//   dispatch({
+//     type: actions.SEARCH_VALUE,
+//     payload: value
+//   });
+// };
+
+export function searchValue(value) {
+  return {
     type: actions.SEARCH_VALUE,
     payload: value
-  });
-};
+  };
+}
 
 export const productDetail = productId => (dispatch, getState) => {
   let products = getState().products.products;
@@ -160,10 +210,14 @@ export const productDetail = productId => (dispatch, getState) => {
     payload: product
   });
 };
-export const disableCartButton = updatedProducts => ({
-  type: actions.DISABLE_CART,
-  payload: updatedProducts
-});
+// export const disableCartButton = updatedProducts => ({
+//   type: actions.DISABLE_CART,
+//   payload: updatedProducts
+// });
+
+export function disableCartButton(updatedProducts) {
+  return { type: actions.DISABLE_CART, payload: updatedProducts };
+}
 
 export const disableButton = productId => (dispatch, getState) => {
   let products = getState().products.products;
@@ -208,24 +262,45 @@ export const enableButton = productId => (dispatch, getState) => {
   dispatch(deleteProduct(productId));
 };
 
-export const enableAddToCart = updatedProducts => ({
-  type: actions.ENABLE_CART,
-  payload: updatedProducts
-});
+// export const enableAddToCart = updatedProducts => ({
+//   type: actions.ENABLE_CART,
+//   payload: updatedProducts
+// });
+export function enableAddToCart(updatedProducts) {
+  return {
+    type: actions.ENABLE_CART,
+    payload: updatedProducts
+  };
+}
 
-export const changeInputValue = values => ({
-  type: actions.PLACE_ORDER,
-  values
-});
+// export const changeInputValue = values => ({
+//   type: actions.PLACE_ORDER,
+//   values
+// });
 
-export const resetCategoryProducts = () => ({
-  type: actions.RESET_CATEGORY_PRODUCTS
-});
+export function changeInputValue(values) {
+  return { type: actions.PLACE_ORDER, values };
+}
 
-export const login = token => ({
-  type: actions.LOGIN,
-  payload: token
-});
+// export const resetCategoryProducts = () => ({
+//   type: actions.RESET_CATEGORY_PRODUCTS
+// });
+export function resetCategoryProducts() {
+  return {
+    type: actions.RESET_CATEGORY_PRODUCTS
+  };
+}
+
+// export const login = token => ({
+//   type: actions.LOGIN,
+//   payload: token
+// });
+export function login(token) {
+  return {
+    type: actions.LOGIN,
+    payload: token
+  };
+}
 
 export const loginAPI = (username, password) => (dispatch, getState) => {
   axios
@@ -237,9 +312,14 @@ export const loginAPI = (username, password) => (dispatch, getState) => {
     .catch(err => console.log(err));
 };
 
-export const logout = () => ({
-  type: actions.LOGOUT
-});
+// export const logout = () => ({
+//   type: actions.LOGOUT
+// });
+export function logout() {
+  return {
+    type: actions.LOGOUT
+  };
+}
 
 export const increaseQty = productId => (dispatch, getState) => {
   let cart = getState().cart.cart;
@@ -291,10 +371,16 @@ export const decreaseQty = productId => (dispatch, getState) => {
   });
 };
 
-export const cartTotal = total => ({
-  type: actions.CART_TOTAL,
-  payload: total
-});
+// export const cartTotal = total => ({
+//   type: actions.CART_TOTAL,
+//   payload: total
+// });
+export function cartTotal(total) {
+  return {
+    type: actions.CART_TOTAL,
+    payload: total
+  };
+}
 
 export function saveSummary(data) {
   return function saving(dispatch, getState) {
@@ -324,6 +410,10 @@ export function saveSummary(data) {
   };
 }
 
-export const clearSearchValue = () => ({
-  type: actions.CLEAR_SEARCH_VALUE
-});
+// export const clearSearchValue = () => ({
+//   type: actions.CLEAR_SEARCH_VALUE
+// });
+
+export function clearSearchValue() {
+  return { type: actions.CLEAR_SEARCH_VALUE };
+}
