@@ -1,5 +1,4 @@
-//Vinosh
-import * as actions from "../action-types";
+import * as actions from '../action-types';
 
 const INITIAL_STATE = {
   isFetching: Boolean,

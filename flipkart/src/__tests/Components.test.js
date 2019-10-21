@@ -1,4 +1,4 @@
-//Vedavyas
+
 import React from "react";
 import Cart from "../app/components/Cart";
 import Footer from "../app/components/Footer";

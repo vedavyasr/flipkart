@@ -1,4 +1,3 @@
-//Vinosh
 import React from "react";
 import StarRating from "./UI/StarRating";
 import AddToCartButton from "./UI/AddToCartButton";

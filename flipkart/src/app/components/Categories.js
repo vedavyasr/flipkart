@@ -1,4 +1,3 @@
-//Vinosh
 import React, { PureComponent } from "react";
 import Category from "./UI/CategoryCard";
 import { Spinner } from "reactstrap";

@@ -1,4 +1,4 @@
-//Vedavyas
+
 import React from "react";
 import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
 import { withRouter } from "react-router-dom";

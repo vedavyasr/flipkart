@@ -1,4 +1,3 @@
-//Vinosh & Vinothini
 import React from "react";
 import {Redirect} from 'react-router-dom';
 import InputBox from "./UI/InputBox";
